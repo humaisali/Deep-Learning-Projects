@@ -1,0 +1,11 @@
+# Node modules
+frontend/node_modules/
+node_modules/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Local environments
+.venv/
+venv/
