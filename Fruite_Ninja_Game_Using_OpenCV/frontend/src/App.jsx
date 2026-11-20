@@ -104,7 +104,7 @@ export default function App() {
           }
         }
         const hands = results.multiHandLandmarks || [];
-        setTrackerStatus((prev) => ({ ...prev, handsCount: hands.length }));
+        setTrackerStatus((prev) => prev.handsCount === hands.length ? prev : { ...prev, handsCount: hands.length });
       },
       onStatusChange: (statusObj) => {
         setTrackerStatus((prev) => ({ ...prev, ...statusObj }));
@@ -188,6 +188,12 @@ export default function App() {
 
   return (
     <div className="game-viewport">
+      {(gameState === 'PLAYING' || gameState === 'ROUND_TRANSITION') && (
+        <button type="button" className="hud-btn exit-game" onClick={handleReturnToMenu}
+          title="End this game and return to the main menu">
+          Exit Game
+        </button>
+      )}
       {/* Live Mirrored Web Camera in the Background */}
       <video
         ref={videoRef}
@@ -214,7 +220,7 @@ export default function App() {
                 <span className={`status-dot ${trackerStatus.handsCount > 0 ? 'active' : 'warning'}`} />
                 {trackerStatus.handsCount > 0
                   ? `Blade Active (${trackerStatus.handsCount} Hand${trackerStatus.handsCount > 1 ? 's' : ''})`
-                  : 'Raise Hand To Slice (Or Mouse)'}
+                  : (trackerStatus.status === 'active' ? 'Raise your index finger to slice' : trackerStatus.message)}
               </span>
             </div>
           </div>
@@ -230,7 +236,7 @@ export default function App() {
             ) : (
               <div className="score-display-2p">
                 <div className="player-score-box p1">
-                  <span className="p-name">P1 (Cyan)</span>
+                  <span className="p-name">Humais</span>
                   <span className="p-score">{scoreData.score1}</span>
                   <span className="p-wins">Wins: {scoreData.roundWins1}</span>
                 </div>
@@ -243,7 +249,7 @@ export default function App() {
                 </div>
 
                 <div className="player-score-box p2">
-                  <span className="p-name">P2 (Coral)</span>
+                  <span className="p-name">Aiman</span>
                   <span className="p-score">{scoreData.score2}</span>
                   <span className="p-wins">Wins: {scoreData.roundWins2}</span>
                 </div>
@@ -344,7 +350,7 @@ export default function App() {
                 <div className="mode-icon-wrap">
                   <Users size={22} />
                 </div>
-                <div className="mode-name">2P Split Duel</div>
+                <div className="mode-name">Humais vs Aiman</div>
                 <div className="mode-desc">
                   1v1 Split-screen duel! 30-second rounds. Highest score or last standing wins!
                 </div>
@@ -383,8 +389,8 @@ export default function App() {
                 <Hand size={24} />
               </div>
               <div className="tracking-banner-text">
-                <strong>Motion Control Ready:</strong> Raise your hand in front of the camera and slice
-                with your index finger! You can also slice with your mouse or touch swipe anytime.
+                <strong>{trackerStatus.message}</strong> Raise your hand in front of the camera and slice
+                with your index finger!
               </div>
             </div>
 
@@ -439,7 +445,7 @@ export default function App() {
                 className="btn-action secondary"
                 onClick={handleReturnToMenu}
               >
-                Main Menu
+                Exit to Main Menu
               </button>
             </div>
           </div>
@@ -481,13 +487,13 @@ export default function App() {
                     <div className="stat-num" style={{ color: '#38bdf8' }}>
                       {gameOverData.score1}
                     </div>
-                    <div className="stat-title">P1 Score ({gameOverData.roundWins1} Wins)</div>
+                    <div className="stat-title">Humais Score ({gameOverData.roundWins1} Wins)</div>
                   </div>
                   <div className="stat-item">
                     <div className="stat-num" style={{ color: '#f87171' }}>
                       {gameOverData.score2}
                     </div>
-                    <div className="stat-title">P2 Score ({gameOverData.roundWins2} Wins)</div>
+                    <div className="stat-title">Aiman Score ({gameOverData.roundWins2} Wins)</div>
                   </div>
                 </>
               )}
@@ -506,7 +512,7 @@ export default function App() {
                 className="btn-action secondary"
                 onClick={handleReturnToMenu}
               >
-                Main Menu
+                Exit to Main Menu
               </button>
             </div>
           </div>
@@ -533,7 +539,7 @@ export default function App() {
                   <div className="rule-title">Hand Gesture Tracking</div>
                   <div className="rule-desc">
                     Point your index finger towards your webcam. Swipe through the air swiftly to
-                    create a cutting blade! (Mouse drag or touch swipe works as well).
+                    create a cutting blade!
                   </div>
                 </div>
               </div>
@@ -571,7 +577,7 @@ export default function App() {
                 <div>
                   <div className="rule-title">2-Player Dojo Duel</div>
                   <div className="rule-desc">
-                    Player 1 guards the left screen, Player 2 guards the right screen. 30-second rounds,
+                    Humais plays on the left and Aiman plays on the right. 30-second rounds,
                     best of 3 rounds takes the victory!
                   </div>
                 </div>

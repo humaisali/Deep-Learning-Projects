@@ -804,3 +804,19 @@
     font-size: 34px;
   }
 }
+
+
+.hud-btn.exit-game {
+  position: fixed;
+  right: max(16px, env(safe-area-inset-right));
+  bottom: max(16px, env(safe-area-inset-bottom));
+  z-index: 12;
+  width: auto;
+  min-height: 44px;
+  padding: 0 16px;
+  color: white;
+  background: #342027;
+  border-color: #c78388;
+  font-weight: 700;
+  cursor: pointer;
+}
