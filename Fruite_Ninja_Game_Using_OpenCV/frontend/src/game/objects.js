@@ -1,4 +1,38 @@
 // Game Objects & Physics for Fruit Slice AR
+const imageCache = new Map();
+function getImage(src) {
+  if (!imageCache.has(src)) {
+    const image = new Image();
+    image.src = src;
+    imageCache.set(src, image);
+  }
+  return imageCache.get(src);
+}
+
+// Sample only the fruit flesh/rind from photos with studio backdrops.
+const photoMasks = {
+  orange: [36, 6, 274, 281],
+  watermelon: [9, 9, 343, 385],
+};
+
+function drawMaskedFruit(ctx, image, type, size, side = 0) {
+  const mask = photoMasks[type];
+  if (!mask) return false;
+  let [x, y, w, h] = mask;
+  if (side && type === 'watermelon') [x, y, w, h] = [9, 137, 280, 308];
+  if (side > 0) x -= type === 'orange' ? 168 : 174;
+  const scale = size / Math.max(w, h);
+  const width = w * scale, height = h * scale;
+  const center = side ? (x + w / 2 - (side < 0 ? image.naturalWidth : 0)) * scale : 0;
+  ctx.save();
+  ctx.beginPath();
+  ctx.ellipse(center, 0, width / 2, height / 2, 0, 0, Math.PI * 2);
+  ctx.clip();
+  ctx.drawImage(image, center - (x + w / 2) * scale, -(y + h / 2) * scale,
+    image.naturalWidth * scale, image.naturalHeight * scale);
+  ctx.restore();
+  return true;
+}
 
 export class Blade {
   constructor(color = 'rgba(56, 189, 248, 0.75)', innerColor = '#ffffff') {
@@ -80,15 +114,14 @@ export class Fruit {
     this.angle = 0;
     this.angularVelocity = (Math.random() - 0.5) * 0.18;
     this.size = 110;
-    this.image = new Image();
-    this.image.src = `/assets/fruits/${type}.png`;
+    this.image = getImage(`/assets/fruits/${type}.png`);
   }
 
-  update() {
-    this.x += this.vx;
-    this.y += this.vy;
-    this.vy += this.gravity;
-    this.angle += this.angularVelocity;
+  update(step = 1) {
+    this.x += this.vx * step;
+    this.y += this.vy * step;
+    this.vy += this.gravity * step;
+    this.angle += this.angularVelocity * step;
   }
 
   draw(ctx) {
@@ -96,7 +129,9 @@ export class Fruit {
       ctx.save();
       ctx.translate(this.x, this.y);
       ctx.rotate(this.angle);
-      ctx.drawImage(this.image, -this.size / 2, -this.size / 2, this.size, this.size);
+      if (!drawMaskedFruit(ctx, this.image, this.type, this.size)) {
+        ctx.drawImage(this.image, -this.size / 2, -this.size / 2, this.size, this.size);
+      }
       ctx.restore();
     }
   }
@@ -135,15 +170,14 @@ export class SlicedFruit {
     this.size = 105;
 
     const halfNum = side === -1 ? '1' : '2';
-    this.image = new Image();
-    this.image.src = `/assets/fruits/${type}_half_${halfNum}.png`;
+    this.image = getImage(`/assets/fruits/${type}_half_${halfNum}.png`);
   }
 
-  update() {
-    this.x += this.vx;
-    this.y += this.vy;
-    this.vy += this.gravity;
-    this.angle += this.angularVelocity;
+  update(step = 1) {
+    this.x += this.vx * step;
+    this.y += this.vy * step;
+    this.vy += this.gravity * step;
+    this.angle += this.angularVelocity * step;
   }
 
   draw(ctx) {
@@ -151,7 +185,12 @@ export class SlicedFruit {
       ctx.save();
       ctx.translate(this.x, this.y);
       ctx.rotate(this.angle);
-      ctx.drawImage(this.image, -this.size / 2, -this.size / 2, this.size, this.size);
+      if (drawMaskedFruit(ctx, this.image, this.type, this.size, this.side)) {
+        ctx.restore();
+        return;
+      }
+      const halfWidth = this.size * this.image.naturalWidth / this.image.naturalHeight;
+      ctx.drawImage(this.image, this.side < 0 ? -halfWidth : 0, -this.size / 2, halfWidth, this.size);
       ctx.restore();
     }
   }
@@ -168,17 +207,16 @@ export class Bomb {
     this.angle = 0;
     this.angularVelocity = (Math.random() - 0.5) * 0.12;
     this.size = 110;
-    this.image = new Image();
-    this.image.src = '/assets/fruits/bomb.png';
+    this.image = getImage('/assets/fruits/bomb.png');
     this.fuseTimer = 0;
   }
 
-  update() {
-    this.x += this.vx;
-    this.y += this.vy;
-    this.vy += this.gravity;
-    this.angle += this.angularVelocity;
-    this.fuseTimer += 0.2;
+  update(step = 1) {
+    this.x += this.vx * step;
+    this.y += this.vy * step;
+    this.vy += this.gravity * step;
+    this.angle += this.angularVelocity * step;
+    this.fuseTimer += 0.2 * step;
   }
 
   draw(ctx) {
@@ -241,13 +279,13 @@ export class Splash {
     this.colorStr = colorStr;
   }
 
-  update() {
+  update(step = 1) {
     for (let i = this.particles.length - 1; i >= 0; i--) {
       const p = this.particles[i];
-      p.x += p.vx;
-      p.y += p.vy;
-      p.vy += 0.2; // slight gravity
-      p.alpha -= p.decay;
+      p.x += p.vx * step;
+      p.y += p.vy * step;
+      p.vy += 0.2 * step; // slight gravity
+      p.alpha -= p.decay * step;
       if (p.alpha <= 0) {
         this.particles.splice(i, 1);
       }
@@ -277,10 +315,10 @@ export class ComboText {
     this.scale = 1.4;
   }
 
-  update() {
-    this.y += this.vy;
-    this.alpha -= 0.025;
-    this.scale = Math.max(1.0, this.scale - 0.02);
+  update(step = 1) {
+    this.y += this.vy * step;
+    this.alpha -= 0.025 * step;
+    this.scale = Math.max(1.0, this.scale - 0.02 * step);
   }
 
   draw(ctx) {
