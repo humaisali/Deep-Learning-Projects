@@ -23,4 +23,4 @@ Open the local URL printed by Vite. Allow camera access when prompted. The hand-
 
 The React interface lives in `src/`. The existing game engine and its original screens are preserved in `public/legacy/`, which is loaded in a same-origin iframe. Changes to the original game logic should be made to `public/legacy/app.js`. The original project files are also retained at the project root for reference.
 
-Created and modified by Shafira0605; React interface added for Puzzle Cam.
+Created and modified by Humais Ali; React interface added for Puzzle Cam.
