@@ -20,7 +20,7 @@ export class HandTracker {
 
     try {
       this.hands = new window.Hands({
-        locateFile: (file) => `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`
+        locateFile: (file) => `/vendor/hands/${file}`
       });
 
       this.hands.setOptions({
@@ -31,7 +31,7 @@ export class HandTracker {
       });
 
       this.hands.onResults((results) => {
-        if (this.onResults) {
+        if (!this.stopped && this.onResults) {
           this.onResults(results);
         }
       });
@@ -48,18 +48,24 @@ export class HandTracker {
       const constraints = {
         video: {
           facingMode: 'user',
-          width: { ideal: 1280 },
-          height: { ideal: 720 }
+          width: { ideal: 640 },
+          height: { ideal: 480 }
         },
         audio: false
       };
 
-      this.stream = await navigator.mediaDevices.getUserMedia(constraints);
+      const stream = await navigator.mediaDevices.getUserMedia(constraints);
+      if (this.stopped) {
+        stream.getTracks().forEach(track => track.stop());
+        return;
+      }
+      this.stream = stream;
       if (this.videoElement) {
         this.videoElement.srcObject = this.stream;
         await this.videoElement.play();
       }
 
+      if (this.stopped) return;
       this.isTracking = true;
       this.onStatusChange({ status: 'active', message: 'Hand tracking active' });
 
@@ -69,8 +75,9 @@ export class HandTracker {
           this.isProcessing = true;
           try {
             await this.hands.send({ image: this.videoElement });
-          } catch {
-            // Frame processing catch
+          } catch (err) {
+            if (!this.stopped) this.onStatusChange({ status: 'error', handsCount: 0, message: 'Hand tracking failed: ' + err.message });
+            return;
           }
           this.isProcessing = false;
         }
@@ -79,11 +86,12 @@ export class HandTracker {
 
       requestAnimationFrame(processLoop);
     } catch (err) {
-      this.onStatusChange({ status: 'camera_denied', message: err.message });
+      if (!this.stopped) this.onStatusChange({ status: 'camera_denied', message: err.message });
     }
   }
 
   stop() {
+    this.stopped = true;
     this.isTracking = false;
     if (this.stream) {
       this.stream.getTracks().forEach((track) => track.stop());
