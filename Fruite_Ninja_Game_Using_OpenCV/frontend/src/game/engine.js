@@ -1,3 +1,4 @@
+import { HandMotion, projectHand } from './handMotion';
 // Fruit Slice AR - Core Game Engine
 import { Blade, Fruit, SlicedFruit, Bomb, Splash, ComboText } from './objects';
 import { soundManager } from './audio';
@@ -53,6 +54,7 @@ export class GameEngine {
     this.animationId = null;
     this.lastTime = performance.now();
     this.frameCount = 0;
+    this.spawnElapsed = 0;
     this.roundTransitionTimer = 0;
 
     // Assets
@@ -62,33 +64,8 @@ export class GameEngine {
     // Video Frame reference from MediaPipe
     this.currentVideoFrame = null;
     this.currentHandsLandmarks = null;
+    this.handMotion = [new HandMotion(), new HandMotion()];
 
-    // Mouse Tracking fallback
-    this.isMouseDown = false;
-    this.setupMouseEvents();
-  }
-
-  setupMouseEvents() {
-    const handleMove = (e) => {
-      const rect = this.canvas.getBoundingClientRect();
-      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-      const x = clientX - rect.left;
-      const y = clientY - rect.top;
-
-      if (this.mode === '2P' && x > this.canvas.width / 2) {
-        this.blade2.update(x, y);
-      } else {
-        this.blade1.update(x, y);
-      }
-    };
-
-    this.canvas.addEventListener('mousemove', handleMove);
-    this.canvas.addEventListener('touchmove', handleMove, { passive: true });
-    this.canvas.addEventListener('mouseleave', () => {
-      this.blade1.fade();
-      this.blade2.fade();
-    });
   }
 
   setVideoFrame(frame) {
@@ -97,6 +74,7 @@ export class GameEngine {
 
   setHandsLandmarks(landmarks) {
     this.currentHandsLandmarks = landmarks;
+    this.hasNewHandResults = true;
   }
 
   start() {
@@ -145,6 +123,7 @@ export class GameEngine {
     this.roundWins2 = 0;
     this.isNewHighScore = false;
     this.frameCount = 0;
+    this.spawnElapsed = 0;
     this.activeFruits = [];
     this.activeSplashes = [];
     this.activeComboTexts = [];
@@ -227,10 +206,10 @@ export class GameEngine {
 
     if (roundWinner === 1) {
       this.roundWins1++;
-      this.roundWinnerText = `Player 1 Wins Round ${this.currentRound}!`;
+      this.roundWinnerText = `Humais Wins Round ${this.currentRound}!`;
     } else if (roundWinner === 2) {
       this.roundWins2++;
-      this.roundWinnerText = `Player 2 Wins Round ${this.currentRound}!`;
+      this.roundWinnerText = `Aiman Wins Round ${this.currentRound}!`;
     } else {
       this.roundWinnerText = `Round ${this.currentRound} Tied!`;
     }
@@ -243,8 +222,8 @@ export class GameEngine {
       soundManager.play('over');
 
       let finalWinner = 'DRAW!';
-      if (this.roundWins1 > this.roundWins2) finalWinner = 'PLAYER 1 VICTORY!';
-      else if (this.roundWins2 > this.roundWins1) finalWinner = 'PLAYER 2 VICTORY!';
+      if (this.roundWins1 > this.roundWins2) finalWinner = 'HUMAIS VICTORY!';
+      else if (this.roundWins2 > this.roundWins1) finalWinner = 'AIMAN VICTORY!';
 
       if (this.callbacks.onGameOver) {
         this.callbacks.onGameOver({
@@ -269,7 +248,9 @@ export class GameEngine {
     this.animationId = requestAnimationFrame(() => this.loop());
 
     const now = performance.now();
-    const dt = (now - this.lastTime) / 1000;
+    const elapsed = (now - this.lastTime) / 1000;
+    const dt = Math.min(elapsed, 0.05);
+    const step = dt * 60;
     this.lastTime = now;
 
     const { width, height } = this.canvas;
@@ -310,39 +291,30 @@ export class GameEngine {
     }
 
     // UPDATE BLADES FROM MEDIAPIPE HANDS
-    let p1Found = false;
-    let p2Found = false;
-
-    if (this.currentHandsLandmarks && this.currentHandsLandmarks.length > 0) {
-      this.currentHandsLandmarks.forEach((landmarks) => {
-        const indexTip = landmarks[8];
-        const x = (1 - indexTip.x) * width;
-        const y = indexTip.y * height;
-
-        if (this.mode === '2P') {
-          if (x < width / 2) {
-            this.blade1.update(x, y);
-            p1Found = true;
-          } else {
-            this.blade2.update(x, y);
-            p2Found = true;
-          }
-        } else {
-          this.blade1.update(x, y);
-          p1Found = true;
-        }
+    const blades = [this.blade1, this.blade2];
+    if (this.hasNewHandResults) {
+      const video = this.currentVideoFrame;
+      const hands = (this.currentHandsLandmarks || []).map(hand =>
+        projectHand(hand, width, height, video?.videoWidth || width, video?.videoHeight || height));
+      this.handMotion.forEach((track, player) => {
+        const candidates = hands.filter(hand => this.mode === '2P'
+          ? Number(hand[8].x >= width / 2) === player : player === 0);
+        track.update(candidates, blades[player], now, Math.min(width, height));
+      });
+      this.hasNewHandResults = false;
+    } else {
+      this.handMotion.forEach((track, player) => {
+        if (track.points && now - track.time > 200) track.update([], blades[player], now, 0);
       });
     }
 
-    if (!p1Found) this.blade1.fade();
-    if (!p2Found) this.blade2.fade();
-
     // GAMEPLAY STATE LOGIC
     if (this.state === 'PLAYING') {
-      this.frameCount++;
+      this.frameCount += step;
+      this.spawnElapsed += step;
 
       if (this.mode === '2P') {
-        this.timeLeft -= dt;
+        this.timeLeft -= elapsed;
         if (this.timeLeft <= 0) {
           this.end2PRound('timer');
           return;
@@ -352,9 +324,10 @@ export class GameEngine {
       // Spawn Fruits
       const diff = this.getDifficultySettings();
       let spawnRate = Math.max(15, diff.spawnRate - Math.floor(this.frameCount / 400) * 3);
-      const isInstantSpawn = this.frameCount === 1;
+      const isInstantSpawn = this.frameCount <= step;
 
-      if (isInstantSpawn || this.frameCount % spawnRate === 0) {
+      if (isInstantSpawn || this.spawnElapsed >= spawnRate) {
+        this.spawnElapsed = 0;
         const spawnY = height + 50;
 
         if (this.mode === '2P') {
@@ -399,10 +372,10 @@ export class GameEngine {
         let sliceVel = 0;
 
         if (f.checkSlice) {
-          if (f.checkSlice(this.blade1)) {
+          if ((this.mode === '1P' || f.x < width / 2) && f.checkSlice(this.blade1)) {
             slicedBy = 1;
             sliceVel = this.blade1.velocity;
-          } else if (f.checkSlice(this.blade2)) {
+          } else if (this.mode === '2P' && f.x >= width / 2 && f.checkSlice(this.blade2)) {
             slicedBy = 2;
             sliceVel = this.blade2.velocity;
           }
@@ -453,7 +426,7 @@ export class GameEngine {
           }
         }
 
-        f.update();
+        f.update(step);
 
         // Screen boundary walls
         if (this.mode === '2P') {
@@ -481,6 +454,9 @@ export class GameEngine {
         }
       }
 
+      this.blade1.velocity = 0;
+      this.blade2.velocity = 0;
+
       // Combo Evaluation
       if (p1Combos >= 2) {
         this.score1 += p1Combos;
@@ -502,13 +478,13 @@ export class GameEngine {
       // Update Splashes & Combos
       for (let i = this.activeSplashes.length - 1; i >= 0; i--) {
         const s = this.activeSplashes[i];
-        s.update();
+        s.update(step);
         s.draw(ctx);
         if (s.particles.length === 0) this.activeSplashes.splice(i, 1);
       }
       for (let i = this.activeComboTexts.length - 1; i >= 0; i--) {
         const c = this.activeComboTexts[i];
-        c.update();
+        c.update(step);
         c.draw(ctx);
         if (c.alpha <= 0) this.activeComboTexts.splice(i, 1);
       }
@@ -537,6 +513,7 @@ export class GameEngine {
         this.score1 = 0;
         this.score2 = 0;
         this.frameCount = 0;
+        this.spawnElapsed = 0;
         this.activeFruits = [];
         this.activeSplashes = [];
         this.activeComboTexts = [];
@@ -554,18 +531,12 @@ export class GameEngine {
     }
 
     // DRAW REAL-TIME HAND & FINGERTIP TRACKING FEEDBACK
-    if (this.currentHandsLandmarks && this.currentHandsLandmarks.length > 0) {
-      this.currentHandsLandmarks.forEach((landmarks) => {
-        const indexTip = landmarks[8];
-        const x = (1 - indexTip.x) * width;
-        const isP2 = this.mode === '2P' && x > width / 2;
-        this.drawHandFeedback(ctx, landmarks, isP2);
-      });
-    }
+    this.handMotion.forEach((track, player) => {
+      if (track.points) this.drawHandFeedback(ctx, track.points, player === 1);
+    });
   }
 
   drawHandFeedback(ctx, landmarks, isPlayer2 = false) {
-    const { width, height } = this.canvas;
     const color = isPlayer2 ? '#f87171' : '#38bdf8';
     const glowColor = isPlayer2 ? 'rgba(239, 68, 68, 0.45)' : 'rgba(56, 189, 248, 0.45)';
 
@@ -586,10 +557,10 @@ export class GameEngine {
     connections.forEach(([i, j]) => {
       const p1 = landmarks[i];
       const p2 = landmarks[j];
-      const x1 = (1 - p1.x) * width;
-      const y1 = p1.y * height;
-      const x2 = (1 - p2.x) * width;
-      const y2 = p2.y * height;
+      const x1 = p1.x;
+      const y1 = p1.y;
+      const x2 = p2.x;
+      const y2 = p2.y;
       ctx.beginPath();
       ctx.moveTo(x1, y1);
       ctx.lineTo(x2, y2);
@@ -599,8 +570,8 @@ export class GameEngine {
     // 2. Draw subtle joint dots
     landmarks.forEach((lm, idx) => {
       if (idx === 8) return; // Landmark 8 (Index tip) gets the special reticle
-      const jx = (1 - lm.x) * width;
-      const jy = lm.y * height;
+      const jx = lm.x;
+      const jy = lm.y;
       ctx.beginPath();
       ctx.arc(jx, jy, 3.5, 0, Math.PI * 2);
       ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
@@ -609,13 +580,12 @@ export class GameEngine {
 
     // 3. Highlight Index Finger Tip (Landmark 8) with Katana Blade Reticle
     const tip = landmarks[8];
-    const tx = (1 - tip.x) * width;
-    const ty = tip.y * height;
+    const tx = tip.x;
+    const ty = tip.y;
 
-    // Animated pulsing outer aura
-    const pulse = (Math.sin(performance.now() / 140) + 1) * 5;
+    // Outer aura
     ctx.beginPath();
-    ctx.arc(tx, ty, 20 + pulse, 0, Math.PI * 2);
+    ctx.arc(tx, ty, 20, 0, Math.PI * 2);
     ctx.fillStyle = glowColor;
     ctx.fill();
 
@@ -649,7 +619,7 @@ export class GameEngine {
     ctx.textAlign = 'center';
     ctx.shadowBlur = 6;
     ctx.shadowColor = '#000000';
-    ctx.fillText(isPlayer2 ? 'P2 BLADE' : 'BLADE', tx, ty - 26);
+    ctx.fillText(this.mode === '1P' ? 'BLADE' : (isPlayer2 ? 'Aiman' : 'Humais'), tx, ty - 26);
 
     ctx.restore();
   }
