@@ -1,0 +1,20 @@
+{
+  "run_id": "20261121T184214Z_272d93dd",
+  "seed": 42,
+  "best_epoch": 3,
+  "ann_threshold": 0.9993172883987427,
+  "batch_source": "held-out replay",
+  "split_sizes": [
+    199364,
+    42719,
+    42724
+  ],
+  "time_boundaries": [
+    132929.0,
+    151328.0
+  ],
+  "torch": "2.13.0+cpu",
+  "sklearn": "1.8.0",
+  "numpy": "2.4.4",
+  "pandas": "3.0.2"
+}
