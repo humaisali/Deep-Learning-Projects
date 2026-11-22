@@ -1,0 +1,61 @@
+{
+  "selected_checkpoint": "cnn_double_lr.pt",
+  "selected_report": "cnn_double_lr_validation.json",
+  "checkpoint_sha256": "0813cbbafc1acb4156a0e2f975a81602c270487a61a629f0a9f1cffc65fb8bde",
+  "manifest_sha256": "46b93fa2dc51e518623a26872ed4193c94af8611727bc39c0603ab0a4ab2bb68",
+  "best_augmentation_run": "cnn_flips_brightness",
+  "selection_metric": "validation_macro_f1",
+  "validation_macro_f1": 0.9815838547980964,
+  "classes": [
+    "crazing",
+    "inclusion",
+    "patches",
+    "pitted_surface",
+    "rolled_in_scale",
+    "scratches"
+  ],
+  "corrected_vs_control": 14,
+  "lost_vs_control": 3,
+  "comparisons": [
+    {
+      "run": "deep_cnn_bn",
+      "learning rate": 0.0003,
+      "epoch": 19,
+      "macro F1": 0.9408430470783896,
+      "correct / 270": 254,
+      "scratches / 45": 39
+    },
+    {
+      "run": "cnn_flips",
+      "learning rate": 0.0003,
+      "epoch": 18,
+      "macro F1": 0.9446854734249953,
+      "correct / 270": 255,
+      "scratches / 45": 40
+    },
+    {
+      "run": "cnn_brightness",
+      "learning rate": 0.0003,
+      "epoch": 18,
+      "macro F1": 0.9446854734249953,
+      "correct / 270": 255,
+      "scratches / 45": 40
+    },
+    {
+      "run": "cnn_flips_brightness",
+      "learning rate": 0.0003,
+      "epoch": 18,
+      "macro F1": 0.9483923796111394,
+      "correct / 270": 256,
+      "scratches / 45": 40
+    },
+    {
+      "run": "cnn_double_lr",
+      "learning rate": 0.0006,
+      "epoch": 18,
+      "macro F1": 0.9815838547980964,
+      "correct / 270": 265,
+      "scratches / 45": 44
+    }
+  ]
+}
