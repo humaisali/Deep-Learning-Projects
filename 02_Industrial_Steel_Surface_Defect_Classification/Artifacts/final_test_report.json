@@ -1,0 +1,3675 @@
+{
+  "checkpoint": "cnn_double_lr.pt",
+  "checkpoint_sha256": "0813cbbafc1acb4156a0e2f975a81602c270487a61a629f0a9f1cffc65fb8bde",
+  "manifest_sha256": "46b93fa2dc51e518623a26872ed4193c94af8611727bc39c0603ab0a4ab2bb68",
+  "epoch": 18,
+  "classes": [
+    "crazing",
+    "inclusion",
+    "patches",
+    "pitted_surface",
+    "rolled_in_scale",
+    "scratches"
+  ],
+  "test_count": 270,
+  "correct": 258,
+  "accuracy": 0.9555555555555556,
+  "macro_f1": 0.9556818364025155,
+  "classification_report": {
+    "crazing": {
+      "precision": 1.0,
+      "recall": 0.9111111111111111,
+      "f1-score": 0.9534883720930233,
+      "support": 45.0
+    },
+    "inclusion": {
+      "precision": 0.8936170212765957,
+      "recall": 0.9333333333333333,
+      "f1-score": 0.9130434782608695,
+      "support": 45.0
+    },
+    "patches": {
+      "precision": 0.9183673469387755,
+      "recall": 1.0,
+      "f1-score": 0.9574468085106383,
+      "support": 45.0
+    },
+    "pitted_surface": {
+      "precision": 1.0,
+      "recall": 0.9777777777777777,
+      "f1-score": 0.9887640449438202,
+      "support": 45.0
+    },
+    "rolled_in_scale": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 45.0
+    },
+    "scratches": {
+      "precision": 0.9318181818181818,
+      "recall": 0.9111111111111111,
+      "f1-score": 0.9213483146067416,
+      "support": 45.0
+    },
+    "accuracy": 0.9555555555555556,
+    "macro avg": {
+      "precision": 0.9573004250055922,
+      "recall": 0.9555555555555557,
+      "f1-score": 0.9556818364025155,
+      "support": 270.0
+    },
+    "weighted avg": {
+      "precision": 0.9573004250055922,
+      "recall": 0.9555555555555556,
+      "f1-score": 0.9556818364025154,
+      "support": 270.0
+    }
+  },
+  "confusion_matrix": [
+    [
+      41,
+      0,
+      4,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      42,
+      0,
+      0,
+      0,
+      3
+    ],
+    [
+      0,
+      0,
+      45,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      1,
+      0,
+      44,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      45,
+      0
+    ],
+    [
+      0,
+      4,
+      0,
+      0,
+      0,
+      41
+    ]
+  ],
+  "cpu_latency": {
+    "cpu": "Intel(R) Core(TM) i7-8650U CPU @ 1.90GHz",
+    "torch": "2.13.0+cpu",
+    "os": "Windows",
+    "threads": 4,
+    "batch_size": 1,
+    "warmup_per_path": 30,
+    "samples_per_path": 270,
+    "forward": {
+      "median_ms": 2.23775,
+      "p95_ms": 7.657414999999999
+    },
+    "file_to_scores": {
+      "median_ms": 4.2997,
+      "p95_ms": 7.77115
+    }
+  },
+  "progression": [
+    {
+      "stage": "Fully connected ANN",
+      "parameters": 2560454,
+      "validation_macro_f1": 0.5011026515373355
+    },
+    {
+      "stage": "Basic CNN",
+      "parameters": 2918,
+      "validation_macro_f1": 0.7118059105556364
+    },
+    {
+      "stage": "Deeper CNN",
+      "parameters": 5238,
+      "validation_macro_f1": 0.8479792482209598
+    },
+    {
+      "stage": "Deeper CNN + BN",
+      "parameters": 5318,
+      "validation_macro_f1": 0.9408430470783896
+    },
+    {
+      "stage": "Optimized CNN",
+      "parameters": 5318,
+      "validation_macro_f1": 0.9815838547980964
+    }
+  ],
+  "predictions": [
+    {
+      "path": "Dataset/NEU-CLS/Cr_10.bmp",
+      "actual": "crazing",
+      "predicted": "crazing",
+      "scores": {
+        "crazing": 0.9223728775978088,
+        "inclusion": 8.29849938766003e-11,
+        "patches": 0.07099935412406921,
+        "pitted_surface": 6.001309884595685e-06,
+        "rolled_in_scale": 0.0052896239794790745,
+        "scratches": 0.001332091516815126
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Cr_107.bmp",
+      "actual": "crazing",
+      "predicted": "crazing",
+      "scores": {
+        "crazing": 0.9701542854309082,
+        "inclusion": 8.839019793871472e-12,
+        "patches": 0.026248816400766373,
+        "pitted_surface": 1.0046751413028687e-06,
+        "rolled_in_scale": 0.0031991880387067795,
+        "scratches": 0.0003966506337746978
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Cr_117.bmp",
+      "actual": "crazing",
+      "predicted": "crazing",
+      "scores": {
+        "crazing": 0.9628538489341736,
+        "inclusion": 6.466824038070529e-12,
+        "patches": 0.035185206681489944,
+        "pitted_surface": 6.950887154744123e-07,
+        "rolled_in_scale": 0.0016908935504034162,
+        "scratches": 0.0002693425049073994
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Cr_12.bmp",
+      "actual": "crazing",
+      "predicted": "crazing",
+      "scores": {
+        "crazing": 0.9240983128547668,
+        "inclusion": 3.8924256179351246e-11,
+        "patches": 0.07443289458751678,
+        "pitted_surface": 6.769178980903234e-06,
+        "rolled_in_scale": 0.00028426627977751195,
+        "scratches": 0.0011778881307691336
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Cr_129.bmp",
+      "actual": "crazing",
+      "predicted": "crazing",
+      "scores": {
+        "crazing": 0.913118839263916,
+        "inclusion": 2.494426887267309e-10,
+        "patches": 0.053089290857315063,
+        "pitted_surface": 1.035731202136958e-05,
+        "rolled_in_scale": 0.03272462636232376,
+        "scratches": 0.0010569451842457056
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Cr_133.bmp",
+      "actual": "crazing",
+      "predicted": "crazing",
+      "scores": {
+        "crazing": 0.9655616879463196,
+        "inclusion": 1.4672718595676315e-10,
+        "patches": 0.030471058562397957,
+        "pitted_surface": 1.1278921192570124e-05,
+        "rolled_in_scale": 0.002961711958050728,
+        "scratches": 0.0009942542528733611
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Cr_141.bmp",
+      "actual": "crazing",
+      "predicted": "crazing",
+      "scores": {
+        "crazing": 0.9364252686500549,
+        "inclusion": 4.849919771343636e-11,
+        "patches": 0.055951472371816635,
+        "pitted_surface": 5.146596777194645e-06,
+        "rolled_in_scale": 0.007107853889465332,
+        "scratches": 0.0005102709983475506
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Cr_150.bmp",
+      "actual": "crazing",
+      "predicted": "crazing",
+      "scores": {
+        "crazing": 0.9105597138404846,
+        "inclusion": 2.6454021265220895e-11,
+        "patches": 0.08636871725320816,
+        "pitted_surface": 2.7256480734649813e-06,
+        "rolled_in_scale": 0.002120120218023658,
+        "scratches": 0.0009487217175774276
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Cr_173.bmp",
+      "actual": "crazing",
+      "predicted": "patches",
+      "scores": {
+        "crazing": 0.31852588057518005,
+        "inclusion": 1.9023654873606688e-10,
+        "patches": 0.6652348637580872,
+        "pitted_surface": 4.681812242779415e-06,
+        "rolled_in_scale": 0.012337625958025455,
+        "scratches": 0.0038969460874795914
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Cr_181.bmp",
+      "actual": "crazing",
+      "predicted": "crazing",
+      "scores": {
+        "crazing": 0.8687157034873962,
+        "inclusion": 7.673295158994176e-12,
+        "patches": 0.1278245598077774,
+        "pitted_surface": 1.0604443332340452e-06,
+        "rolled_in_scale": 0.002653490286320448,
+        "scratches": 0.0008053004276007414
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Cr_200.bmp",
+      "actual": "crazing",
+      "predicted": "crazing",
+      "scores": {
+        "crazing": 0.9808760285377502,
+        "inclusion": 1.0981913078564332e-12,
+        "patches": 0.018888549879193306,
+        "pitted_surface": 6.752283070454723e-07,
+        "rolled_in_scale": 9.749445598572493e-05,
+        "scratches": 0.0001371068792650476
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Cr_203.bmp",
+      "actual": "crazing",
+      "predicted": "crazing",
+      "scores": {
+        "crazing": 0.9859176278114319,
+        "inclusion": 5.57615694070368e-13,
+        "patches": 0.013876669108867645,
+        "pitted_surface": 2.8595243861673225e-07,
+        "rolled_in_scale": 0.00010669077164493501,
+        "scratches": 9.868431516224518e-05
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Cr_211.bmp",
+      "actual": "crazing",
+      "predicted": "crazing",
+      "scores": {
+        "crazing": 0.838163435459137,
+        "inclusion": 8.569658871415697e-11,
+        "patches": 0.13784296810626984,
+        "pitted_surface": 3.7663701277779182e-06,
+        "rolled_in_scale": 0.023093566298484802,
+        "scratches": 0.0008962570573203266
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Cr_215.bmp",
+      "actual": "crazing",
+      "predicted": "crazing",
+      "scores": {
+        "crazing": 0.9834464192390442,
+        "inclusion": 1.0904547230461414e-11,
+        "patches": 0.016105717048048973,
+        "pitted_surface": 2.588647248558118e-06,
+        "rolled_in_scale": 0.0002585820038802922,
+        "scratches": 0.00018661747162695974
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Cr_219.bmp",
+      "actual": "crazing",
+      "predicted": "crazing",
+      "scores": {
+        "crazing": 0.6451070308685303,
+        "inclusion": 1.1523140081015626e-10,
+        "patches": 0.3338793218135834,
+        "pitted_surface": 4.5047554522170685e-06,
+        "rolled_in_scale": 0.018517153337597847,
+        "scratches": 0.002491960534825921
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Cr_22.bmp",
+      "actual": "crazing",
+      "predicted": "crazing",
+      "scores": {
+        "crazing": 0.9659589529037476,
+        "inclusion": 1.1098072330920083e-12,
+        "patches": 0.03360510244965553,
+        "pitted_surface": 3.5980212942376966e-07,
+        "rolled_in_scale": 0.00016745644097682089,
+        "scratches": 0.0002681640617083758
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Cr_220.bmp",
+      "actual": "crazing",
+      "predicted": "crazing",
+      "scores": {
+        "crazing": 0.9731124639511108,
+        "inclusion": 3.902554494839006e-12,
+        "patches": 0.026542460545897484,
+        "pitted_surface": 1.1089183544754633e-06,
+        "rolled_in_scale": 0.00010922439105343074,
+        "scratches": 0.00023463294201064855
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Cr_223.bmp",
+      "actual": "crazing",
+      "predicted": "patches",
+      "scores": {
+        "crazing": 0.2844838798046112,
+        "inclusion": 3.871196696536572e-10,
+        "patches": 0.6968950033187866,
+        "pitted_surface": 6.578373813681537e-06,
+        "rolled_in_scale": 0.013447404839098454,
+        "scratches": 0.005167181603610516
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Cr_225.bmp",
+      "actual": "crazing",
+      "predicted": "crazing",
+      "scores": {
+        "crazing": 0.9473651647567749,
+        "inclusion": 1.2527512664381457e-12,
+        "patches": 0.05218334496021271,
+        "pitted_surface": 5.242739575805899e-07,
+        "rolled_in_scale": 7.603730045957491e-05,
+        "scratches": 0.0003749575116671622
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Cr_226.bmp",
+      "actual": "crazing",
+      "predicted": "crazing",
+      "scores": {
+        "crazing": 0.979313313961029,
+        "inclusion": 7.368016244867215e-13,
+        "patches": 0.02044072188436985,
+        "pitted_surface": 2.070944162824162e-07,
+        "rolled_in_scale": 4.190537947579287e-05,
+        "scratches": 0.00020384087110869586
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Cr_227.bmp",
+      "actual": "crazing",
+      "predicted": "crazing",
+      "scores": {
+        "crazing": 0.9695566296577454,
+        "inclusion": 1.2620506853119884e-12,
+        "patches": 0.030252015218138695,
+        "pitted_surface": 7.115398830137565e-07,
+        "rolled_in_scale": 6.995978765189648e-05,
+        "scratches": 0.00012064473412465304
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Cr_231.bmp",
+      "actual": "crazing",
+      "predicted": "crazing",
+      "scores": {
+        "crazing": 0.9302909970283508,
+        "inclusion": 1.8613072888529203e-11,
+        "patches": 0.06890534609556198,
+        "pitted_surface": 2.0457489426917164e-06,
+        "rolled_in_scale": 9.57649972406216e-05,
+        "scratches": 0.0007058372721076012
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Cr_238.bmp",
+      "actual": "crazing",
+      "predicted": "crazing",
+      "scores": {
+        "crazing": 0.963668167591095,
+        "inclusion": 9.240959560063988e-12,
+        "patches": 0.03539653867483139,
+        "pitted_surface": 2.6191837605438195e-06,
+        "rolled_in_scale": 0.0006093576084822416,
+        "scratches": 0.0003234229516237974
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Cr_239.bmp",
+      "actual": "crazing",
+      "predicted": "crazing",
+      "scores": {
+        "crazing": 0.8940814137458801,
+        "inclusion": 1.0154157029096389e-11,
+        "patches": 0.10471583157777786,
+        "pitted_surface": 5.39324992132606e-06,
+        "rolled_in_scale": 4.2525618482613936e-05,
+        "scratches": 0.0011548709589987993
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Cr_241.bmp",
+      "actual": "crazing",
+      "predicted": "crazing",
+      "scores": {
+        "crazing": 0.7330336570739746,
+        "inclusion": 1.1770756244700031e-11,
+        "patches": 0.26473867893218994,
+        "pitted_surface": 4.629270733857993e-06,
+        "rolled_in_scale": 3.9371097955154255e-05,
+        "scratches": 0.0021835723891854286
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Cr_256.bmp",
+      "actual": "crazing",
+      "predicted": "crazing",
+      "scores": {
+        "crazing": 0.8949396014213562,
+        "inclusion": 6.901094279365694e-11,
+        "patches": 0.10213064402341843,
+        "pitted_surface": 8.71198335516965e-06,
+        "rolled_in_scale": 0.00010123300307895988,
+        "scratches": 0.002819785149767995
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Cr_259.bmp",
+      "actual": "crazing",
+      "predicted": "crazing",
+      "scores": {
+        "crazing": 0.8466436266899109,
+        "inclusion": 6.528036444741758e-11,
+        "patches": 0.15107014775276184,
+        "pitted_surface": 5.490444891620427e-06,
+        "rolled_in_scale": 1.820084435166791e-05,
+        "scratches": 0.0022626088466495275
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Cr_267.bmp",
+      "actual": "crazing",
+      "predicted": "crazing",
+      "scores": {
+        "crazing": 0.9581136703491211,
+        "inclusion": 6.901209465004499e-11,
+        "patches": 0.04040289670228958,
+        "pitted_surface": 1.5411493222927675e-05,
+        "rolled_in_scale": 0.0010403691558167338,
+        "scratches": 0.00042757560731843114
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Cr_268.bmp",
+      "actual": "crazing",
+      "predicted": "crazing",
+      "scores": {
+        "crazing": 0.8811573386192322,
+        "inclusion": 1.3470765301837329e-11,
+        "patches": 0.1178290918469429,
+        "pitted_surface": 5.1562083172029816e-06,
+        "rolled_in_scale": 3.820269921561703e-05,
+        "scratches": 0.000970122404396534
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Cr_274.bmp",
+      "actual": "crazing",
+      "predicted": "crazing",
+      "scores": {
+        "crazing": 0.9184040427207947,
+        "inclusion": 3.270097387320092e-11,
+        "patches": 0.07998458296060562,
+        "pitted_surface": 3.7471859286597464e-06,
+        "rolled_in_scale": 0.00028772157384082675,
+        "scratches": 0.0013198840897530317
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Cr_285.bmp",
+      "actual": "crazing",
+      "predicted": "crazing",
+      "scores": {
+        "crazing": 0.9502215385437012,
+        "inclusion": 1.8970327045342295e-11,
+        "patches": 0.0491255447268486,
+        "pitted_surface": 6.188196493894793e-06,
+        "rolled_in_scale": 0.00011730076221283525,
+        "scratches": 0.0005293063004501164
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Cr_288.bmp",
+      "actual": "crazing",
+      "predicted": "crazing",
+      "scores": {
+        "crazing": 0.9020237326622009,
+        "inclusion": 1.3056412895284808e-10,
+        "patches": 0.09588714689016342,
+        "pitted_surface": 1.880497620732058e-05,
+        "rolled_in_scale": 0.0002366972912568599,
+        "scratches": 0.001833614194765687
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Cr_290.bmp",
+      "actual": "crazing",
+      "predicted": "crazing",
+      "scores": {
+        "crazing": 0.9189053773880005,
+        "inclusion": 1.4686540872332898e-10,
+        "patches": 0.07891998440027237,
+        "pitted_surface": 1.8388991520623676e-05,
+        "rolled_in_scale": 0.0008167010964825749,
+        "scratches": 0.001339510316029191
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Cr_293.bmp",
+      "actual": "crazing",
+      "predicted": "crazing",
+      "scores": {
+        "crazing": 0.9721287488937378,
+        "inclusion": 2.2894101978782055e-12,
+        "patches": 0.027471667155623436,
+        "pitted_surface": 1.0400443670732784e-06,
+        "rolled_in_scale": 0.00010538587957853451,
+        "scratches": 0.00029317860025912523
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Cr_30.bmp",
+      "actual": "crazing",
+      "predicted": "crazing",
+      "scores": {
+        "crazing": 0.9657319784164429,
+        "inclusion": 2.142909460989273e-11,
+        "patches": 0.03298574313521385,
+        "pitted_surface": 6.481388481915928e-06,
+        "rolled_in_scale": 0.0009758310043253005,
+        "scratches": 0.00030000420520082116
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Cr_38.bmp",
+      "actual": "crazing",
+      "predicted": "crazing",
+      "scores": {
+        "crazing": 0.8936884999275208,
+        "inclusion": 1.4246966106856718e-10,
+        "patches": 0.0999002605676651,
+        "pitted_surface": 9.097183465200942e-06,
+        "rolled_in_scale": 0.005410694517195225,
+        "scratches": 0.0009915345581248403
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Cr_40.bmp",
+      "actual": "crazing",
+      "predicted": "crazing",
+      "scores": {
+        "crazing": 0.9861785173416138,
+        "inclusion": 2.910077560869251e-12,
+        "patches": 0.01299160998314619,
+        "pitted_surface": 1.4073708598516532e-06,
+        "rolled_in_scale": 0.000645620166324079,
+        "scratches": 0.00018284660473000258
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Cr_44.bmp",
+      "actual": "crazing",
+      "predicted": "crazing",
+      "scores": {
+        "crazing": 0.6573829650878906,
+        "inclusion": 3.9410744112622353e-10,
+        "patches": 0.3258889615535736,
+        "pitted_surface": 1.2108539522159845e-05,
+        "rolled_in_scale": 0.012010788545012474,
+        "scratches": 0.004705094266682863
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Cr_55.bmp",
+      "actual": "crazing",
+      "predicted": "crazing",
+      "scores": {
+        "crazing": 0.8239143490791321,
+        "inclusion": 8.797691464224044e-10,
+        "patches": 0.14901567995548248,
+        "pitted_surface": 3.78812437702436e-05,
+        "rolled_in_scale": 0.023411165922880173,
+        "scratches": 0.003620930016040802
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Cr_64.bmp",
+      "actual": "crazing",
+      "predicted": "crazing",
+      "scores": {
+        "crazing": 0.8326258659362793,
+        "inclusion": 1.3676804133666565e-10,
+        "patches": 0.14932942390441895,
+        "pitted_surface": 6.5920630731852725e-06,
+        "rolled_in_scale": 0.01604815013706684,
+        "scratches": 0.0019900889601558447
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Cr_76.bmp",
+      "actual": "crazing",
+      "predicted": "patches",
+      "scores": {
+        "crazing": 0.4358290135860443,
+        "inclusion": 4.2745890160844624e-11,
+        "patches": 0.5468843579292297,
+        "pitted_surface": 1.474649707233766e-06,
+        "rolled_in_scale": 0.014556486159563065,
+        "scratches": 0.002728595631197095
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Cr_77.bmp",
+      "actual": "crazing",
+      "predicted": "patches",
+      "scores": {
+        "crazing": 0.36914461851119995,
+        "inclusion": 1.6736910468662103e-10,
+        "patches": 0.6070207357406616,
+        "pitted_surface": 5.501305167854298e-06,
+        "rolled_in_scale": 0.01898682676255703,
+        "scratches": 0.004842296242713928
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Cr_82.bmp",
+      "actual": "crazing",
+      "predicted": "crazing",
+      "scores": {
+        "crazing": 0.7525049448013306,
+        "inclusion": 1.4989389729436198e-09,
+        "patches": 0.20648589730262756,
+        "pitted_surface": 4.532451930572279e-05,
+        "rolled_in_scale": 0.03527064248919487,
+        "scratches": 0.00569324241951108
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Cr_84.bmp",
+      "actual": "crazing",
+      "predicted": "crazing",
+      "scores": {
+        "crazing": 0.9535679817199707,
+        "inclusion": 2.8377911132082545e-11,
+        "patches": 0.045839887112379074,
+        "pitted_surface": 5.024031452194322e-06,
+        "rolled_in_scale": 6.3291285187006e-05,
+        "scratches": 0.0005237970617599785
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Cr_88.bmp",
+      "actual": "crazing",
+      "predicted": "crazing",
+      "scores": {
+        "crazing": 0.9751890301704407,
+        "inclusion": 8.112197580345537e-10,
+        "patches": 0.022801559418439865,
+        "pitted_surface": 6.875066173961386e-05,
+        "rolled_in_scale": 0.0015333816409111023,
+        "scratches": 0.00040740176336839795
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/In_110.bmp",
+      "actual": "inclusion",
+      "predicted": "inclusion",
+      "scores": {
+        "crazing": 5.956627774139633e-06,
+        "inclusion": 0.8507665991783142,
+        "patches": 7.297033880604431e-05,
+        "pitted_surface": 0.03528263792395592,
+        "rolled_in_scale": 0.0008368376293219626,
+        "scratches": 0.11303503811359406
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/In_112.bmp",
+      "actual": "inclusion",
+      "predicted": "inclusion",
+      "scores": {
+        "crazing": 1.3236953236628324e-05,
+        "inclusion": 0.749598503112793,
+        "patches": 0.00013810991367790848,
+        "pitted_surface": 0.052171994000673294,
+        "rolled_in_scale": 0.0022006514482200146,
+        "scratches": 0.19587747752666473
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/In_121.bmp",
+      "actual": "inclusion",
+      "predicted": "inclusion",
+      "scores": {
+        "crazing": 5.919368413742632e-05,
+        "inclusion": 0.6664058566093445,
+        "patches": 0.0009331569890491664,
+        "pitted_surface": 0.06644224375486374,
+        "rolled_in_scale": 0.002164955949410796,
+        "scratches": 0.26399457454681396
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/In_123.bmp",
+      "actual": "inclusion",
+      "predicted": "inclusion",
+      "scores": {
+        "crazing": 5.766754475189373e-05,
+        "inclusion": 0.7578709721565247,
+        "patches": 0.0003972607373725623,
+        "pitted_surface": 0.08615661412477493,
+        "rolled_in_scale": 0.005379360634833574,
+        "scratches": 0.15013819932937622
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/In_13.bmp",
+      "actual": "inclusion",
+      "predicted": "inclusion",
+      "scores": {
+        "crazing": 4.899781288258964e-06,
+        "inclusion": 0.8759869933128357,
+        "patches": 6.814565131207928e-05,
+        "pitted_surface": 0.02560083568096161,
+        "rolled_in_scale": 0.0006022131419740617,
+        "scratches": 0.09773693978786469
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/In_146.bmp",
+      "actual": "inclusion",
+      "predicted": "inclusion",
+      "scores": {
+        "crazing": 9.551752555125859e-06,
+        "inclusion": 0.8603246212005615,
+        "patches": 0.0001115283157560043,
+        "pitted_surface": 0.027914592996239662,
+        "rolled_in_scale": 0.0009446748881600797,
+        "scratches": 0.11069504916667938
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/In_154.bmp",
+      "actual": "inclusion",
+      "predicted": "inclusion",
+      "scores": {
+        "crazing": 3.978711538366042e-05,
+        "inclusion": 0.7508077025413513,
+        "patches": 0.0004197482776362449,
+        "pitted_surface": 0.06351276487112045,
+        "rolled_in_scale": 0.002902952255681157,
+        "scratches": 0.18231698870658875
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/In_162.bmp",
+      "actual": "inclusion",
+      "predicted": "inclusion",
+      "scores": {
+        "crazing": 0.00011650947271846235,
+        "inclusion": 0.6072055101394653,
+        "patches": 0.0009314221679233015,
+        "pitted_surface": 0.10926033556461334,
+        "rolled_in_scale": 0.006586527917534113,
+        "scratches": 0.27589958906173706
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/In_164.bmp",
+      "actual": "inclusion",
+      "predicted": "inclusion",
+      "scores": {
+        "crazing": 9.566840890329331e-05,
+        "inclusion": 0.5784096717834473,
+        "patches": 0.0011026200372725725,
+        "pitted_surface": 0.106306292116642,
+        "rolled_in_scale": 0.00623284000903368,
+        "scratches": 0.30785292387008667
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/In_174.bmp",
+      "actual": "inclusion",
+      "predicted": "inclusion",
+      "scores": {
+        "crazing": 1.5282246749848127e-05,
+        "inclusion": 0.8849297761917114,
+        "patches": 0.00011538114631548524,
+        "pitted_surface": 0.03889975696802139,
+        "rolled_in_scale": 0.001471027615480125,
+        "scratches": 0.0745687261223793
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/In_179.bmp",
+      "actual": "inclusion",
+      "predicted": "inclusion",
+      "scores": {
+        "crazing": 9.890943147183862e-06,
+        "inclusion": 0.801763117313385,
+        "patches": 8.459272794425488e-05,
+        "pitted_surface": 0.03621352091431618,
+        "rolled_in_scale": 0.001483692554756999,
+        "scratches": 0.16044524312019348
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/In_18.bmp",
+      "actual": "inclusion",
+      "predicted": "inclusion",
+      "scores": {
+        "crazing": 5.8073568652616814e-05,
+        "inclusion": 0.7371262907981873,
+        "patches": 0.0006048981449566782,
+        "pitted_surface": 0.06925416737794876,
+        "rolled_in_scale": 0.004571112804114819,
+        "scratches": 0.18838533759117126
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/In_181.bmp",
+      "actual": "inclusion",
+      "predicted": "inclusion",
+      "scores": {
+        "crazing": 9.693080755823757e-06,
+        "inclusion": 0.8164187669754028,
+        "patches": 0.00010815593850566074,
+        "pitted_surface": 0.03941354155540466,
+        "rolled_in_scale": 0.0015255858888849616,
+        "scratches": 0.14252422749996185
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/In_183.bmp",
+      "actual": "inclusion",
+      "predicted": "inclusion",
+      "scores": {
+        "crazing": 1.9659237295854837e-05,
+        "inclusion": 0.7311207056045532,
+        "patches": 0.00019070103007834405,
+        "pitted_surface": 0.05844889208674431,
+        "rolled_in_scale": 0.0031603635288774967,
+        "scratches": 0.2070595920085907
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/In_190.bmp",
+      "actual": "inclusion",
+      "predicted": "inclusion",
+      "scores": {
+        "crazing": 2.7708938432624564e-05,
+        "inclusion": 0.701217770576477,
+        "patches": 0.0002998733543790877,
+        "pitted_surface": 0.053601477295160294,
+        "rolled_in_scale": 0.003691181307658553,
+        "scratches": 0.24116210639476776
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/In_192.bmp",
+      "actual": "inclusion",
+      "predicted": "inclusion",
+      "scores": {
+        "crazing": 1.1603119673964102e-05,
+        "inclusion": 0.7746750116348267,
+        "patches": 0.00011638633441179991,
+        "pitted_surface": 0.04596170783042908,
+        "rolled_in_scale": 0.001981068402528763,
+        "scratches": 0.17725415527820587
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/In_195.bmp",
+      "actual": "inclusion",
+      "predicted": "inclusion",
+      "scores": {
+        "crazing": 6.183894129208056e-06,
+        "inclusion": 0.8444748520851135,
+        "patches": 6.259799556573853e-05,
+        "pitted_surface": 0.03520071506500244,
+        "rolled_in_scale": 0.000954402144998312,
+        "scratches": 0.11930123716592789
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/In_198.bmp",
+      "actual": "inclusion",
+      "predicted": "inclusion",
+      "scores": {
+        "crazing": 1.2689864888670854e-05,
+        "inclusion": 0.8076295852661133,
+        "patches": 0.0001435287413187325,
+        "pitted_surface": 0.03712264448404312,
+        "rolled_in_scale": 0.0018407665193080902,
+        "scratches": 0.15325075387954712
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/In_199.bmp",
+      "actual": "inclusion",
+      "predicted": "inclusion",
+      "scores": {
+        "crazing": 2.1721070879721083e-05,
+        "inclusion": 0.8005507588386536,
+        "patches": 0.00019189510203432292,
+        "pitted_surface": 0.05047563463449478,
+        "rolled_in_scale": 0.002954174065962434,
+        "scratches": 0.14580582082271576
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/In_200.bmp",
+      "actual": "inclusion",
+      "predicted": "inclusion",
+      "scores": {
+        "crazing": 1.1389904102543369e-05,
+        "inclusion": 0.7524905204772949,
+        "patches": 0.00014373869635164738,
+        "pitted_surface": 0.046941980719566345,
+        "rolled_in_scale": 0.0017826862167567015,
+        "scratches": 0.198629692196846
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/In_206.bmp",
+      "actual": "inclusion",
+      "predicted": "inclusion",
+      "scores": {
+        "crazing": 9.079299161385279e-06,
+        "inclusion": 0.8792849779129028,
+        "patches": 0.00011143455776618794,
+        "pitted_surface": 0.027024399489164352,
+        "rolled_in_scale": 0.0006764316349290311,
+        "scratches": 0.09289369732141495
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/In_210.bmp",
+      "actual": "inclusion",
+      "predicted": "inclusion",
+      "scores": {
+        "crazing": 1.0268665391777176e-05,
+        "inclusion": 0.8555888533592224,
+        "patches": 9.574065188644454e-05,
+        "pitted_surface": 0.03054424189031124,
+        "rolled_in_scale": 0.001101832021959126,
+        "scratches": 0.11265892535448074
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/In_218.bmp",
+      "actual": "inclusion",
+      "predicted": "inclusion",
+      "scores": {
+        "crazing": 6.290360943239648e-06,
+        "inclusion": 0.8719441890716553,
+        "patches": 5.874950875295326e-05,
+        "pitted_surface": 0.030161315575242043,
+        "rolled_in_scale": 0.0008668487425893545,
+        "scratches": 0.096962571144104
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/In_223.bmp",
+      "actual": "inclusion",
+      "predicted": "inclusion",
+      "scores": {
+        "crazing": 1.4251536413212307e-05,
+        "inclusion": 0.871545135974884,
+        "patches": 0.00015623326180502772,
+        "pitted_surface": 0.03085269033908844,
+        "rolled_in_scale": 0.0010661303531378508,
+        "scratches": 0.0963655337691307
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/In_226.bmp",
+      "actual": "inclusion",
+      "predicted": "inclusion",
+      "scores": {
+        "crazing": 7.595790066261543e-06,
+        "inclusion": 0.8487665057182312,
+        "patches": 7.752790406811982e-05,
+        "pitted_surface": 0.038342416286468506,
+        "rolled_in_scale": 0.0011786354007199407,
+        "scratches": 0.11162739247083664
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/In_228.bmp",
+      "actual": "inclusion",
+      "predicted": "inclusion",
+      "scores": {
+        "crazing": 1.9357028577360325e-05,
+        "inclusion": 0.7954424023628235,
+        "patches": 0.0007048753905110061,
+        "pitted_surface": 0.04367521032691002,
+        "rolled_in_scale": 0.0004340897430665791,
+        "scratches": 0.15972404181957245
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/In_244.bmp",
+      "actual": "inclusion",
+      "predicted": "inclusion",
+      "scores": {
+        "crazing": 0.00013477320317178965,
+        "inclusion": 0.5735979080200195,
+        "patches": 0.003888350445777178,
+        "pitted_surface": 0.19375310838222504,
+        "rolled_in_scale": 0.0015372043708339334,
+        "scratches": 0.22708868980407715
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/In_254.bmp",
+      "actual": "inclusion",
+      "predicted": "inclusion",
+      "scores": {
+        "crazing": 0.00010928806295851246,
+        "inclusion": 0.698135495185852,
+        "patches": 0.0022855193819850683,
+        "pitted_surface": 0.1724092960357666,
+        "rolled_in_scale": 0.0015227353433147073,
+        "scratches": 0.1255377233028412
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/In_263.bmp",
+      "actual": "inclusion",
+      "predicted": "inclusion",
+      "scores": {
+        "crazing": 9.45213014347246e-06,
+        "inclusion": 0.8621448278427124,
+        "patches": 0.0001250562199857086,
+        "pitted_surface": 0.030146384611725807,
+        "rolled_in_scale": 0.0007859179168008268,
+        "scratches": 0.10678832978010178
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/In_269.bmp",
+      "actual": "inclusion",
+      "predicted": "scratches",
+      "scores": {
+        "crazing": 0.00011573997471714392,
+        "inclusion": 0.12523052096366882,
+        "patches": 0.005143096670508385,
+        "pitted_surface": 0.1642286479473114,
+        "rolled_in_scale": 0.0056894938461482525,
+        "scratches": 0.6995925307273865
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/In_272.bmp",
+      "actual": "inclusion",
+      "predicted": "inclusion",
+      "scores": {
+        "crazing": 2.427290746709332e-05,
+        "inclusion": 0.8350329399108887,
+        "patches": 0.00030199007596820593,
+        "pitted_surface": 0.0328008197247982,
+        "rolled_in_scale": 0.0011614093091338873,
+        "scratches": 0.13067853450775146
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/In_274.bmp",
+      "actual": "inclusion",
+      "predicted": "scratches",
+      "scores": {
+        "crazing": 6.643599044764414e-05,
+        "inclusion": 0.2942487895488739,
+        "patches": 0.0014933700440451503,
+        "pitted_surface": 0.11638795584440231,
+        "rolled_in_scale": 0.005371604114770889,
+        "scratches": 0.5824319124221802
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/In_284.bmp",
+      "actual": "inclusion",
+      "predicted": "inclusion",
+      "scores": {
+        "crazing": 4.397137672640383e-05,
+        "inclusion": 0.59697425365448,
+        "patches": 0.0003409174387343228,
+        "pitted_surface": 0.06341121345758438,
+        "rolled_in_scale": 0.006118938326835632,
+        "scratches": 0.33311066031455994
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/In_295.bmp",
+      "actual": "inclusion",
+      "predicted": "inclusion",
+      "scores": {
+        "crazing": 6.729042979713995e-06,
+        "inclusion": 0.8619330525398254,
+        "patches": 7.656158413738012e-05,
+        "pitted_surface": 0.029208635911345482,
+        "rolled_in_scale": 0.000860238797031343,
+        "scratches": 0.10791490972042084
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/In_296.bmp",
+      "actual": "inclusion",
+      "predicted": "scratches",
+      "scores": {
+        "crazing": 4.9446665798313916e-05,
+        "inclusion": 0.3472968339920044,
+        "patches": 0.0009534053970128298,
+        "pitted_surface": 0.08856333047151566,
+        "rolled_in_scale": 0.005395594052970409,
+        "scratches": 0.5577414631843567
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/In_298.bmp",
+      "actual": "inclusion",
+      "predicted": "inclusion",
+      "scores": {
+        "crazing": 0.00026464101392775774,
+        "inclusion": 0.4654694199562073,
+        "patches": 0.0035596592351794243,
+        "pitted_surface": 0.12705111503601074,
+        "rolled_in_scale": 0.0029090852476656437,
+        "scratches": 0.40074610710144043
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/In_35.bmp",
+      "actual": "inclusion",
+      "predicted": "inclusion",
+      "scores": {
+        "crazing": 1.613254971744027e-05,
+        "inclusion": 0.6691911220550537,
+        "patches": 0.0001905668032122776,
+        "pitted_surface": 0.05709115415811539,
+        "rolled_in_scale": 0.002655278891324997,
+        "scratches": 0.27085572481155396
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/In_44.bmp",
+      "actual": "inclusion",
+      "predicted": "inclusion",
+      "scores": {
+        "crazing": 3.51564449374564e-05,
+        "inclusion": 0.7847394347190857,
+        "patches": 0.00038610107731074095,
+        "pitted_surface": 0.050411809235811234,
+        "rolled_in_scale": 0.001917934394441545,
+        "scratches": 0.16250954568386078
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/In_52.bmp",
+      "actual": "inclusion",
+      "predicted": "inclusion",
+      "scores": {
+        "crazing": 1.0371497410233133e-05,
+        "inclusion": 0.851677417755127,
+        "patches": 9.639620111556724e-05,
+        "pitted_surface": 0.03980148956179619,
+        "rolled_in_scale": 0.0014973890502005816,
+        "scratches": 0.10691694915294647
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/In_53.bmp",
+      "actual": "inclusion",
+      "predicted": "inclusion",
+      "scores": {
+        "crazing": 1.537438583909534e-05,
+        "inclusion": 0.8662419319152832,
+        "patches": 0.00012580135080497712,
+        "pitted_surface": 0.04281240329146385,
+        "rolled_in_scale": 0.0019658366218209267,
+        "scratches": 0.08883872628211975
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/In_66.bmp",
+      "actual": "inclusion",
+      "predicted": "inclusion",
+      "scores": {
+        "crazing": 0.0002023848210228607,
+        "inclusion": 0.48848527669906616,
+        "patches": 0.0014783022925257683,
+        "pitted_surface": 0.19230416417121887,
+        "rolled_in_scale": 0.01621486060321331,
+        "scratches": 0.3013150691986084
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/In_75.bmp",
+      "actual": "inclusion",
+      "predicted": "inclusion",
+      "scores": {
+        "crazing": 3.225531327188946e-05,
+        "inclusion": 0.5466476082801819,
+        "patches": 0.00033678830368444324,
+        "pitted_surface": 0.08622734993696213,
+        "rolled_in_scale": 0.004301848821341991,
+        "scratches": 0.3624541759490967
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/In_78.bmp",
+      "actual": "inclusion",
+      "predicted": "inclusion",
+      "scores": {
+        "crazing": 2.1840132831130177e-05,
+        "inclusion": 0.7902512550354004,
+        "patches": 0.0001340373419225216,
+        "pitted_surface": 0.06594935804605484,
+        "rolled_in_scale": 0.0029817598406225443,
+        "scratches": 0.14066167175769806
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/In_81.bmp",
+      "actual": "inclusion",
+      "predicted": "inclusion",
+      "scores": {
+        "crazing": 1.1805599569925107e-05,
+        "inclusion": 0.7295244932174683,
+        "patches": 0.0001374241546727717,
+        "pitted_surface": 0.054373208433389664,
+        "rolled_in_scale": 0.001799979479983449,
+        "scratches": 0.21415318548679352
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/In_88.bmp",
+      "actual": "inclusion",
+      "predicted": "inclusion",
+      "scores": {
+        "crazing": 1.556875395181123e-05,
+        "inclusion": 0.8478259444236755,
+        "patches": 0.00020714632410090417,
+        "pitted_surface": 0.031129395589232445,
+        "rolled_in_scale": 0.0009182534995488822,
+        "scratches": 0.11990366876125336
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Pa_109.bmp",
+      "actual": "patches",
+      "predicted": "patches",
+      "scores": {
+        "crazing": 0.04443034529685974,
+        "inclusion": 1.3049937519493682e-10,
+        "patches": 0.9473846554756165,
+        "pitted_surface": 5.661932505063305e-07,
+        "rolled_in_scale": 0.000372591195628047,
+        "scratches": 0.007811891846358776
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Pa_112.bmp",
+      "actual": "patches",
+      "predicted": "patches",
+      "scores": {
+        "crazing": 0.003502461826428771,
+        "inclusion": 5.119893224658778e-12,
+        "patches": 0.989763617515564,
+        "pitted_surface": 4.28669331142828e-08,
+        "rolled_in_scale": 1.8086878981193877e-06,
+        "scratches": 0.006732095964252949
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Pa_12.bmp",
+      "actual": "patches",
+      "predicted": "patches",
+      "scores": {
+        "crazing": 0.0815347284078598,
+        "inclusion": 2.6823562815359026e-10,
+        "patches": 0.9036442041397095,
+        "pitted_surface": 1.225468054144585e-06,
+        "rolled_in_scale": 0.0011397597845643759,
+        "scratches": 0.013680189847946167
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Pa_124.bmp",
+      "actual": "patches",
+      "predicted": "patches",
+      "scores": {
+        "crazing": 0.005470640026032925,
+        "inclusion": 5.868511926410136e-11,
+        "patches": 0.9919654130935669,
+        "pitted_surface": 8.092177949947654e-07,
+        "rolled_in_scale": 1.3396372196439188e-05,
+        "scratches": 0.002549699740484357
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Pa_127.bmp",
+      "actual": "patches",
+      "predicted": "patches",
+      "scores": {
+        "crazing": 0.004057332407683134,
+        "inclusion": 1.1146665535033407e-10,
+        "patches": 0.9897605776786804,
+        "pitted_surface": 1.2143822232246748e-06,
+        "rolled_in_scale": 2.048433816526085e-05,
+        "scratches": 0.0061604734510183334
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Pa_144.bmp",
+      "actual": "patches",
+      "predicted": "patches",
+      "scores": {
+        "crazing": 0.0003821691498160362,
+        "inclusion": 1.1680062472763098e-09,
+        "patches": 0.9956120252609253,
+        "pitted_surface": 3.9646065488341264e-06,
+        "rolled_in_scale": 5.334526576916687e-05,
+        "scratches": 0.003948559053242207
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Pa_155.bmp",
+      "actual": "patches",
+      "predicted": "patches",
+      "scores": {
+        "crazing": 0.004743363708257675,
+        "inclusion": 1.589879215693063e-13,
+        "patches": 0.9918618202209473,
+        "pitted_surface": 4.0092277941994325e-08,
+        "rolled_in_scale": 1.91182660813638e-08,
+        "scratches": 0.003394797910004854
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Pa_158.bmp",
+      "actual": "patches",
+      "predicted": "patches",
+      "scores": {
+        "crazing": 0.0015975703718140721,
+        "inclusion": 5.632997323798405e-13,
+        "patches": 0.9884468913078308,
+        "pitted_surface": 3.9622207737011195e-09,
+        "rolled_in_scale": 1.7673568208920187e-07,
+        "scratches": 0.009955396875739098
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Pa_165.bmp",
+      "actual": "patches",
+      "predicted": "patches",
+      "scores": {
+        "crazing": 0.0404973067343235,
+        "inclusion": 4.984715418210328e-10,
+        "patches": 0.9419456124305725,
+        "pitted_surface": 4.330614956415957e-06,
+        "rolled_in_scale": 0.0001616895169718191,
+        "scratches": 0.017390988767147064
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Pa_168.bmp",
+      "actual": "patches",
+      "predicted": "patches",
+      "scores": {
+        "crazing": 0.008500702679157257,
+        "inclusion": 1.4667792804998192e-12,
+        "patches": 0.9859785437583923,
+        "pitted_surface": 6.92757495812657e-08,
+        "rolled_in_scale": 2.0458880953810876e-06,
+        "scratches": 0.005518603604286909
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Pa_17.bmp",
+      "actual": "patches",
+      "predicted": "patches",
+      "scores": {
+        "crazing": 0.003168861847370863,
+        "inclusion": 1.4632052514063076e-10,
+        "patches": 0.9886138439178467,
+        "pitted_surface": 2.8872133839286107e-07,
+        "rolled_in_scale": 8.172257366823032e-06,
+        "scratches": 0.008208975195884705
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Pa_174.bmp",
+      "actual": "patches",
+      "predicted": "patches",
+      "scores": {
+        "crazing": 0.005732130724936724,
+        "inclusion": 2.5885949200138425e-12,
+        "patches": 0.9910953044891357,
+        "pitted_surface": 1.8151182246128883e-07,
+        "rolled_in_scale": 4.225868451612769e-06,
+        "scratches": 0.0031680448446422815
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Pa_176.bmp",
+      "actual": "patches",
+      "predicted": "patches",
+      "scores": {
+        "crazing": 0.029076186940073967,
+        "inclusion": 9.505067089313202e-13,
+        "patches": 0.9634867310523987,
+        "pitted_surface": 9.58702486286711e-08,
+        "rolled_in_scale": 4.018032086605672e-06,
+        "scratches": 0.007432914339005947
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Pa_178.bmp",
+      "actual": "patches",
+      "predicted": "patches",
+      "scores": {
+        "crazing": 0.008731025271117687,
+        "inclusion": 6.477158254192261e-10,
+        "patches": 0.9850851893424988,
+        "pitted_surface": 1.5330016367443022e-06,
+        "rolled_in_scale": 0.0008153525413945317,
+        "scratches": 0.005366920493543148
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Pa_187.bmp",
+      "actual": "patches",
+      "predicted": "patches",
+      "scores": {
+        "crazing": 0.125290647149086,
+        "inclusion": 1.4356782256086387e-11,
+        "patches": 0.8699244856834412,
+        "pitted_surface": 1.2585693411892862e-06,
+        "rolled_in_scale": 5.20289977430366e-05,
+        "scratches": 0.004731602966785431
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Pa_190.bmp",
+      "actual": "patches",
+      "predicted": "patches",
+      "scores": {
+        "crazing": 0.0305714663118124,
+        "inclusion": 8.351759767707273e-14,
+        "patches": 0.9663710594177246,
+        "pitted_surface": 1.5276514275797126e-08,
+        "rolled_in_scale": 1.272733356927347e-06,
+        "scratches": 0.0030562838073819876
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Pa_191.bmp",
+      "actual": "patches",
+      "predicted": "patches",
+      "scores": {
+        "crazing": 0.004287134390324354,
+        "inclusion": 3.1173277934698485e-12,
+        "patches": 0.9910701513290405,
+        "pitted_surface": 1.0717696952156075e-08,
+        "rolled_in_scale": 1.05309561604372e-06,
+        "scratches": 0.004641646519303322
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Pa_200.bmp",
+      "actual": "patches",
+      "predicted": "patches",
+      "scores": {
+        "crazing": 0.008157848380506039,
+        "inclusion": 4.50989315337047e-11,
+        "patches": 0.9862274527549744,
+        "pitted_surface": 1.272708004762535e-06,
+        "rolled_in_scale": 1.768596121110022e-05,
+        "scratches": 0.005595730617642403
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Pa_206.bmp",
+      "actual": "patches",
+      "predicted": "patches",
+      "scores": {
+        "crazing": 0.007832174189388752,
+        "inclusion": 2.0714008633349046e-11,
+        "patches": 0.9854689240455627,
+        "pitted_surface": 1.799872251240231e-07,
+        "rolled_in_scale": 6.636083526245784e-06,
+        "scratches": 0.006692057941108942
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Pa_220.bmp",
+      "actual": "patches",
+      "predicted": "patches",
+      "scores": {
+        "crazing": 0.007373415399342775,
+        "inclusion": 1.4489593335928475e-12,
+        "patches": 0.9900158047676086,
+        "pitted_surface": 2.100705565055705e-08,
+        "rolled_in_scale": 7.076021120155929e-06,
+        "scratches": 0.0026037264615297318
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Pa_223.bmp",
+      "actual": "patches",
+      "predicted": "patches",
+      "scores": {
+        "crazing": 0.0023546128068119287,
+        "inclusion": 2.0961136992792007e-10,
+        "patches": 0.992782711982727,
+        "pitted_surface": 3.808360361290397e-06,
+        "rolled_in_scale": 8.171493277586706e-07,
+        "scratches": 0.004857989493757486
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Pa_234.bmp",
+      "actual": "patches",
+      "predicted": "patches",
+      "scores": {
+        "crazing": 0.036816708743572235,
+        "inclusion": 3.2821849405006986e-11,
+        "patches": 0.9559047222137451,
+        "pitted_surface": 1.008316189654579e-06,
+        "rolled_in_scale": 6.342209417198319e-06,
+        "scratches": 0.007271109614521265
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Pa_235.bmp",
+      "actual": "patches",
+      "predicted": "patches",
+      "scores": {
+        "crazing": 0.0065178112126886845,
+        "inclusion": 1.847632940740751e-12,
+        "patches": 0.9888482093811035,
+        "pitted_surface": 3.354826816348577e-08,
+        "rolled_in_scale": 1.1836637270334904e-07,
+        "scratches": 0.004633859731256962
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Pa_236.bmp",
+      "actual": "patches",
+      "predicted": "patches",
+      "scores": {
+        "crazing": 0.0009985461365431547,
+        "inclusion": 8.27720600393711e-11,
+        "patches": 0.9864954948425293,
+        "pitted_surface": 6.164493697724538e-07,
+        "rolled_in_scale": 2.680918953501532e-07,
+        "scratches": 0.012505197897553444
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Pa_238.bmp",
+      "actual": "patches",
+      "predicted": "patches",
+      "scores": {
+        "crazing": 0.18132348358631134,
+        "inclusion": 1.5067143088742796e-09,
+        "patches": 0.8112848401069641,
+        "pitted_surface": 3.131885387119837e-05,
+        "rolled_in_scale": 0.0007546527194790542,
+        "scratches": 0.006605708040297031
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Pa_250.bmp",
+      "actual": "patches",
+      "predicted": "patches",
+      "scores": {
+        "crazing": 0.0281347818672657,
+        "inclusion": 3.0461268923920315e-11,
+        "patches": 0.9639036059379578,
+        "pitted_surface": 3.616244725890283e-07,
+        "rolled_in_scale": 2.4131462851073593e-05,
+        "scratches": 0.007937164977192879
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Pa_258.bmp",
+      "actual": "patches",
+      "predicted": "patches",
+      "scores": {
+        "crazing": 0.1960480660200119,
+        "inclusion": 1.941215799217133e-10,
+        "patches": 0.7953095436096191,
+        "pitted_surface": 2.9081304546707543e-06,
+        "rolled_in_scale": 0.004440006799995899,
+        "scratches": 0.004199454560875893
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Pa_259.bmp",
+      "actual": "patches",
+      "predicted": "patches",
+      "scores": {
+        "crazing": 0.1011149063706398,
+        "inclusion": 3.981948017844905e-12,
+        "patches": 0.8927057981491089,
+        "pitted_surface": 5.214217253524112e-07,
+        "rolled_in_scale": 5.536498065339401e-06,
+        "scratches": 0.006173221860080957
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Pa_27.bmp",
+      "actual": "patches",
+      "predicted": "patches",
+      "scores": {
+        "crazing": 0.003524787025526166,
+        "inclusion": 4.533747266499688e-10,
+        "patches": 0.9876986742019653,
+        "pitted_surface": 6.733145710313693e-06,
+        "rolled_in_scale": 9.410812708665617e-06,
+        "scratches": 0.008760369382798672
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Pa_273.bmp",
+      "actual": "patches",
+      "predicted": "patches",
+      "scores": {
+        "crazing": 0.0023897592909634113,
+        "inclusion": 3.344950150196979e-10,
+        "patches": 0.9821354150772095,
+        "pitted_surface": 3.1627644148102263e-06,
+        "rolled_in_scale": 1.021630168906995e-06,
+        "scratches": 0.0154707171022892
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Pa_276.bmp",
+      "actual": "patches",
+      "predicted": "patches",
+      "scores": {
+        "crazing": 0.002312124241143465,
+        "inclusion": 2.433280833769036e-11,
+        "patches": 0.9932367205619812,
+        "pitted_surface": 3.855810177810781e-07,
+        "rolled_in_scale": 1.6654128387472156e-07,
+        "scratches": 0.004450624343007803
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Pa_284.bmp",
+      "actual": "patches",
+      "predicted": "patches",
+      "scores": {
+        "crazing": 0.017197448760271072,
+        "inclusion": 2.9882213370413524e-10,
+        "patches": 0.9709473252296448,
+        "pitted_surface": 4.4528681542033155e-07,
+        "rolled_in_scale": 7.41043986636214e-05,
+        "scratches": 0.011780780740082264
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Pa_289.bmp",
+      "actual": "patches",
+      "predicted": "patches",
+      "scores": {
+        "crazing": 0.004277913365513086,
+        "inclusion": 8.510877558265406e-10,
+        "patches": 0.977301299571991,
+        "pitted_surface": 3.3952194371522637e-06,
+        "rolled_in_scale": 0.0005654996493831277,
+        "scratches": 0.017851924523711205
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Pa_299.bmp",
+      "actual": "patches",
+      "predicted": "patches",
+      "scores": {
+        "crazing": 0.001997296931222081,
+        "inclusion": 6.435416088912405e-10,
+        "patches": 0.9932209253311157,
+        "pitted_surface": 3.0377718758245464e-06,
+        "rolled_in_scale": 0.00019389727094676346,
+        "scratches": 0.004584705922752619
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Pa_30.bmp",
+      "actual": "patches",
+      "predicted": "patches",
+      "scores": {
+        "crazing": 0.000493954517878592,
+        "inclusion": 2.361240092341177e-09,
+        "patches": 0.9912263751029968,
+        "pitted_surface": 7.120478585420642e-06,
+        "rolled_in_scale": 9.847776527749375e-05,
+        "scratches": 0.008174225687980652
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Pa_42.bmp",
+      "actual": "patches",
+      "predicted": "patches",
+      "scores": {
+        "crazing": 0.0003459158178884536,
+        "inclusion": 1.1564003443709225e-07,
+        "patches": 0.9403420686721802,
+        "pitted_surface": 3.9067468605935574e-05,
+        "rolled_in_scale": 3.571190063667018e-06,
+        "scratches": 0.05926921218633652
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Pa_45.bmp",
+      "actual": "patches",
+      "predicted": "patches",
+      "scores": {
+        "crazing": 0.09818928688764572,
+        "inclusion": 2.0404308798127602e-10,
+        "patches": 0.8911069631576538,
+        "pitted_surface": 3.950446171074873e-06,
+        "rolled_in_scale": 3.280072269262746e-05,
+        "scratches": 0.010667025111615658
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Pa_53.bmp",
+      "actual": "patches",
+      "predicted": "patches",
+      "scores": {
+        "crazing": 0.0019495385931804776,
+        "inclusion": 6.846855526987383e-09,
+        "patches": 0.9549060463905334,
+        "pitted_surface": 3.083857154706493e-05,
+        "rolled_in_scale": 1.2044313280057395e-06,
+        "scratches": 0.04311234503984451
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Pa_57.bmp",
+      "actual": "patches",
+      "predicted": "patches",
+      "scores": {
+        "crazing": 0.0003546635853126645,
+        "inclusion": 1.9993529054573855e-09,
+        "patches": 0.9817314743995667,
+        "pitted_surface": 2.3600221084052464e-06,
+        "rolled_in_scale": 3.5768070461017487e-07,
+        "scratches": 0.017911117523908615
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Pa_6.bmp",
+      "actual": "patches",
+      "predicted": "patches",
+      "scores": {
+        "crazing": 0.0029176559764891863,
+        "inclusion": 5.304617509138687e-11,
+        "patches": 0.9918304085731506,
+        "pitted_surface": 2.3366924040146841e-07,
+        "rolled_in_scale": 4.8470476031070575e-05,
+        "scratches": 0.005203146953135729
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Pa_66.bmp",
+      "actual": "patches",
+      "predicted": "patches",
+      "scores": {
+        "crazing": 0.009952628053724766,
+        "inclusion": 2.3161002629668026e-11,
+        "patches": 0.9822840094566345,
+        "pitted_surface": 1.4500422196306317e-07,
+        "rolled_in_scale": 9.343499186797999e-06,
+        "scratches": 0.007753901183605194
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Pa_83.bmp",
+      "actual": "patches",
+      "predicted": "patches",
+      "scores": {
+        "crazing": 0.03224271163344383,
+        "inclusion": 9.418140711758838e-10,
+        "patches": 0.9481737613677979,
+        "pitted_surface": 3.0240187243180117e-06,
+        "rolled_in_scale": 0.0009514014818705618,
+        "scratches": 0.018629129976034164
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Pa_86.bmp",
+      "actual": "patches",
+      "predicted": "patches",
+      "scores": {
+        "crazing": 0.03866417333483696,
+        "inclusion": 1.0683873924444143e-10,
+        "patches": 0.9504911303520203,
+        "pitted_surface": 1.0208615321971592e-06,
+        "rolled_in_scale": 0.0001541885721962899,
+        "scratches": 0.010689426213502884
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Pa_87.bmp",
+      "actual": "patches",
+      "predicted": "patches",
+      "scores": {
+        "crazing": 0.014906269498169422,
+        "inclusion": 4.165559910895844e-11,
+        "patches": 0.973150372505188,
+        "pitted_surface": 2.1238260217160132e-07,
+        "rolled_in_scale": 6.186907739902381e-06,
+        "scratches": 0.011936882510781288
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Pa_91.bmp",
+      "actual": "patches",
+      "predicted": "patches",
+      "scores": {
+        "crazing": 0.02553613670170307,
+        "inclusion": 9.861028660296256e-10,
+        "patches": 0.9530266523361206,
+        "pitted_surface": 1.7382396890752716e-06,
+        "rolled_in_scale": 0.0010765735059976578,
+        "scratches": 0.02035893127322197
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/PS_102.bmp",
+      "actual": "pitted_surface",
+      "predicted": "pitted_surface",
+      "scores": {
+        "crazing": 2.430227687000297e-05,
+        "inclusion": 0.2696973383426666,
+        "patches": 0.006505221594125032,
+        "pitted_surface": 0.7003647089004517,
+        "rolled_in_scale": 8.430448360741138e-05,
+        "scratches": 0.023324131965637207
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/PS_122.bmp",
+      "actual": "pitted_surface",
+      "predicted": "pitted_surface",
+      "scores": {
+        "crazing": 4.337643986218609e-05,
+        "inclusion": 0.057967379689216614,
+        "patches": 0.003741487395018339,
+        "pitted_surface": 0.929330587387085,
+        "rolled_in_scale": 0.00014553674554917961,
+        "scratches": 0.008771608583629131
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/PS_128.bmp",
+      "actual": "pitted_surface",
+      "predicted": "pitted_surface",
+      "scores": {
+        "crazing": 0.0008677559671923518,
+        "inclusion": 0.14772047102451324,
+        "patches": 0.0005593462847173214,
+        "pitted_surface": 0.5649542808532715,
+        "rolled_in_scale": 0.22236192226409912,
+        "scratches": 0.06353631615638733
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/PS_139.bmp",
+      "actual": "pitted_surface",
+      "predicted": "pitted_surface",
+      "scores": {
+        "crazing": 0.00011345559323672205,
+        "inclusion": 0.005564780440181494,
+        "patches": 0.000956158502958715,
+        "pitted_surface": 0.9905905723571777,
+        "rolled_in_scale": 0.0012412086362019181,
+        "scratches": 0.0015338389202952385
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/PS_145.bmp",
+      "actual": "pitted_surface",
+      "predicted": "pitted_surface",
+      "scores": {
+        "crazing": 0.0005295249866321683,
+        "inclusion": 0.30599042773246765,
+        "patches": 0.001399476546794176,
+        "pitted_surface": 0.5719699263572693,
+        "rolled_in_scale": 0.028978021815419197,
+        "scratches": 0.09113257378339767
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/PS_149.bmp",
+      "actual": "pitted_surface",
+      "predicted": "pitted_surface",
+      "scores": {
+        "crazing": 4.480751522351056e-05,
+        "inclusion": 0.29191604256629944,
+        "patches": 0.004306036978960037,
+        "pitted_surface": 0.6616971492767334,
+        "rolled_in_scale": 0.0002514625957701355,
+        "scratches": 0.04178445786237717
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/PS_15.bmp",
+      "actual": "pitted_surface",
+      "predicted": "pitted_surface",
+      "scores": {
+        "crazing": 8.303011418320239e-05,
+        "inclusion": 0.0018103235634043813,
+        "patches": 0.002964314306154847,
+        "pitted_surface": 0.9937054514884949,
+        "rolled_in_scale": 0.00040320344851352274,
+        "scratches": 0.0010336331324651837
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/PS_151.bmp",
+      "actual": "pitted_surface",
+      "predicted": "pitted_surface",
+      "scores": {
+        "crazing": 0.0007260041311383247,
+        "inclusion": 0.057673100382089615,
+        "patches": 0.0005860302480868995,
+        "pitted_surface": 0.8073821067810059,
+        "rolled_in_scale": 0.10290305316448212,
+        "scratches": 0.03072969615459442
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/PS_164.bmp",
+      "actual": "pitted_surface",
+      "predicted": "pitted_surface",
+      "scores": {
+        "crazing": 0.0006487176869995892,
+        "inclusion": 7.999375384315499e-07,
+        "patches": 0.00019169002189300954,
+        "pitted_surface": 0.9990699887275696,
+        "rolled_in_scale": 6.912044045748189e-05,
+        "scratches": 1.9748249542317353e-05
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/PS_167.bmp",
+      "actual": "pitted_surface",
+      "predicted": "pitted_surface",
+      "scores": {
+        "crazing": 0.008630380965769291,
+        "inclusion": 0.0022459642495959997,
+        "patches": 0.011308851651847363,
+        "pitted_surface": 0.6814574599266052,
+        "rolled_in_scale": 0.1250094771385193,
+        "scratches": 0.17134787142276764
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/PS_18.bmp",
+      "actual": "pitted_surface",
+      "predicted": "pitted_surface",
+      "scores": {
+        "crazing": 0.0007465060334652662,
+        "inclusion": 0.00014498438395094126,
+        "patches": 0.006308612879365683,
+        "pitted_surface": 0.9895963072776794,
+        "rolled_in_scale": 0.0018442939035594463,
+        "scratches": 0.0013591884635388851
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/PS_188.bmp",
+      "actual": "pitted_surface",
+      "predicted": "pitted_surface",
+      "scores": {
+        "crazing": 0.00019462816999293864,
+        "inclusion": 0.003051317296922207,
+        "patches": 0.012684042565524578,
+        "pitted_surface": 0.9793326258659363,
+        "rolled_in_scale": 0.0004190934414509684,
+        "scratches": 0.00431824941188097
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/PS_19.bmp",
+      "actual": "pitted_surface",
+      "predicted": "pitted_surface",
+      "scores": {
+        "crazing": 0.0009955833666026592,
+        "inclusion": 0.00015332127804867923,
+        "patches": 0.002118143253028393,
+        "pitted_surface": 0.9887392520904541,
+        "rolled_in_scale": 0.006569071672856808,
+        "scratches": 0.0014246719656512141
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/PS_191.bmp",
+      "actual": "pitted_surface",
+      "predicted": "pitted_surface",
+      "scores": {
+        "crazing": 0.0005545533495023847,
+        "inclusion": 0.010714265517890453,
+        "patches": 0.003935912158340216,
+        "pitted_surface": 0.9623634219169617,
+        "rolled_in_scale": 0.009067394770681858,
+        "scratches": 0.013364334590733051
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/PS_2.bmp",
+      "actual": "pitted_surface",
+      "predicted": "pitted_surface",
+      "scores": {
+        "crazing": 0.00025778927374631166,
+        "inclusion": 0.07563413679599762,
+        "patches": 0.0009956483263522387,
+        "pitted_surface": 0.8682647347450256,
+        "rolled_in_scale": 0.03340808302164078,
+        "scratches": 0.021439507603645325
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/PS_213.bmp",
+      "actual": "pitted_surface",
+      "predicted": "pitted_surface",
+      "scores": {
+        "crazing": 0.0004705211613327265,
+        "inclusion": 0.0021281728986650705,
+        "patches": 0.0005035276990383863,
+        "pitted_surface": 0.9792051911354065,
+        "rolled_in_scale": 0.01331231277436018,
+        "scratches": 0.004380329046398401
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/PS_222.bmp",
+      "actual": "pitted_surface",
+      "predicted": "pitted_surface",
+      "scores": {
+        "crazing": 0.0016715091187506914,
+        "inclusion": 0.037207167595624924,
+        "patches": 0.0030600863974541426,
+        "pitted_surface": 0.6411281228065491,
+        "rolled_in_scale": 0.15719066560268402,
+        "scratches": 0.159742534160614
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/PS_229.bmp",
+      "actual": "pitted_surface",
+      "predicted": "pitted_surface",
+      "scores": {
+        "crazing": 0.00029019961948506534,
+        "inclusion": 0.0017192619852721691,
+        "patches": 0.002448640065267682,
+        "pitted_surface": 0.9839040040969849,
+        "rolled_in_scale": 0.00814918801188469,
+        "scratches": 0.003488709684461355
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/PS_231.bmp",
+      "actual": "pitted_surface",
+      "predicted": "pitted_surface",
+      "scores": {
+        "crazing": 0.00024087709607556462,
+        "inclusion": 0.0007592737674713135,
+        "patches": 0.008633416146039963,
+        "pitted_surface": 0.9849366545677185,
+        "rolled_in_scale": 0.0013170340098440647,
+        "scratches": 0.004112774971872568
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/PS_232.bmp",
+      "actual": "pitted_surface",
+      "predicted": "pitted_surface",
+      "scores": {
+        "crazing": 2.7653575671138242e-05,
+        "inclusion": 0.28285884857177734,
+        "patches": 0.008136291056871414,
+        "pitted_surface": 0.6690720915794373,
+        "rolled_in_scale": 0.00020960420079063624,
+        "scratches": 0.03969546779990196
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/PS_241.bmp",
+      "actual": "pitted_surface",
+      "predicted": "pitted_surface",
+      "scores": {
+        "crazing": 0.0001658327382756397,
+        "inclusion": 0.0009256581543013453,
+        "patches": 0.015956560149788857,
+        "pitted_surface": 0.9792245030403137,
+        "rolled_in_scale": 7.988134893821552e-05,
+        "scratches": 0.0036475220695137978
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/PS_242.bmp",
+      "actual": "pitted_surface",
+      "predicted": "pitted_surface",
+      "scores": {
+        "crazing": 0.0005762612563557923,
+        "inclusion": 6.69748114887625e-05,
+        "patches": 0.0019341178704053164,
+        "pitted_surface": 0.9943233728408813,
+        "rolled_in_scale": 0.002680425066500902,
+        "scratches": 0.00041889649583026767
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/PS_257.bmp",
+      "actual": "pitted_surface",
+      "predicted": "pitted_surface",
+      "scores": {
+        "crazing": 0.001612973865121603,
+        "inclusion": 0.016290051862597466,
+        "patches": 0.0006618833285756409,
+        "pitted_surface": 0.6824315786361694,
+        "rolled_in_scale": 0.28194424510002136,
+        "scratches": 0.017059296369552612
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/PS_261.bmp",
+      "actual": "pitted_surface",
+      "predicted": "pitted_surface",
+      "scores": {
+        "crazing": 0.0005424525588750839,
+        "inclusion": 0.0004793494881596416,
+        "patches": 0.01681705377995968,
+        "pitted_surface": 0.9729089736938477,
+        "rolled_in_scale": 0.00031648369622416794,
+        "scratches": 0.00893570389598608
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/PS_262.bmp",
+      "actual": "pitted_surface",
+      "predicted": "pitted_surface",
+      "scores": {
+        "crazing": 0.0010485135717317462,
+        "inclusion": 0.00036443592398427427,
+        "patches": 0.005112942308187485,
+        "pitted_surface": 0.9902358651161194,
+        "rolled_in_scale": 0.0013273812364786863,
+        "scratches": 0.0019108521519228816
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/PS_265.bmp",
+      "actual": "pitted_surface",
+      "predicted": "pitted_surface",
+      "scores": {
+        "crazing": 0.001033502514474094,
+        "inclusion": 0.08148236572742462,
+        "patches": 0.0010797999566420913,
+        "pitted_surface": 0.7477096319198608,
+        "rolled_in_scale": 0.117074154317379,
+        "scratches": 0.05162055790424347
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/PS_266.bmp",
+      "actual": "pitted_surface",
+      "predicted": "pitted_surface",
+      "scores": {
+        "crazing": 0.0006880324217490852,
+        "inclusion": 0.1522747129201889,
+        "patches": 0.0048582348972558975,
+        "pitted_surface": 0.6544594168663025,
+        "rolled_in_scale": 0.014603983610868454,
+        "scratches": 0.17311573028564453
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/PS_271.bmp",
+      "actual": "pitted_surface",
+      "predicted": "pitted_surface",
+      "scores": {
+        "crazing": 0.0006371430354192853,
+        "inclusion": 0.0001292018569074571,
+        "patches": 0.007460357155650854,
+        "pitted_surface": 0.9893335700035095,
+        "rolled_in_scale": 0.0012049480574205518,
+        "scratches": 0.001234724186360836
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/PS_272.bmp",
+      "actual": "pitted_surface",
+      "predicted": "pitted_surface",
+      "scores": {
+        "crazing": 0.0005040044197812676,
+        "inclusion": 0.001295548165217042,
+        "patches": 0.0003656804619822651,
+        "pitted_surface": 0.9570021629333496,
+        "rolled_in_scale": 0.03947225585579872,
+        "scratches": 0.0013604186242446303
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/PS_277.bmp",
+      "actual": "pitted_surface",
+      "predicted": "pitted_surface",
+      "scores": {
+        "crazing": 0.000295096862828359,
+        "inclusion": 0.001992923440411687,
+        "patches": 0.003729335032403469,
+        "pitted_surface": 0.9874388575553894,
+        "rolled_in_scale": 0.002230571350082755,
+        "scratches": 0.004313348326832056
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/PS_288.bmp",
+      "actual": "pitted_surface",
+      "predicted": "pitted_surface",
+      "scores": {
+        "crazing": 0.0005604581092484295,
+        "inclusion": 0.0020327388774603605,
+        "patches": 0.0018379236571490765,
+        "pitted_surface": 0.9835895895957947,
+        "rolled_in_scale": 0.00877358391880989,
+        "scratches": 0.003205660032108426
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/PS_295.bmp",
+      "actual": "pitted_surface",
+      "predicted": "pitted_surface",
+      "scores": {
+        "crazing": 0.005977584049105644,
+        "inclusion": 0.008615326136350632,
+        "patches": 0.00609741173684597,
+        "pitted_surface": 0.49094244837760925,
+        "rolled_in_scale": 0.22301796078681946,
+        "scratches": 0.2653493285179138
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/PS_298.bmp",
+      "actual": "pitted_surface",
+      "predicted": "pitted_surface",
+      "scores": {
+        "crazing": 0.00011769488628488034,
+        "inclusion": 0.4154622256755829,
+        "patches": 0.003537999466061592,
+        "pitted_surface": 0.47052398324012756,
+        "rolled_in_scale": 0.0010435640579089522,
+        "scratches": 0.10931441932916641
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/PS_3.bmp",
+      "actual": "pitted_surface",
+      "predicted": "pitted_surface",
+      "scores": {
+        "crazing": 0.0004556136846076697,
+        "inclusion": 0.006092068273574114,
+        "patches": 0.000864602392539382,
+        "pitted_surface": 0.9597285389900208,
+        "rolled_in_scale": 0.02771909534931183,
+        "scratches": 0.005140060093253851
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/PS_38.bmp",
+      "actual": "pitted_surface",
+      "predicted": "pitted_surface",
+      "scores": {
+        "crazing": 0.0001258540723938495,
+        "inclusion": 0.0005203007603995502,
+        "patches": 0.002475745277479291,
+        "pitted_surface": 0.995572566986084,
+        "rolled_in_scale": 0.0005554690142162144,
+        "scratches": 0.000750090170186013
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/PS_41.bmp",
+      "actual": "pitted_surface",
+      "predicted": "pitted_surface",
+      "scores": {
+        "crazing": 0.0009540524333715439,
+        "inclusion": 0.000425324949901551,
+        "patches": 0.0010321300942450762,
+        "pitted_surface": 0.9547747373580933,
+        "rolled_in_scale": 0.03973281756043434,
+        "scratches": 0.003080908674746752
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/PS_59.bmp",
+      "actual": "pitted_surface",
+      "predicted": "pitted_surface",
+      "scores": {
+        "crazing": 0.003154741134494543,
+        "inclusion": 4.173280831309967e-05,
+        "patches": 0.004154963884502649,
+        "pitted_surface": 0.9900909662246704,
+        "rolled_in_scale": 0.0013926553074270487,
+        "scratches": 0.0011649683583527803
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/PS_72.bmp",
+      "actual": "pitted_surface",
+      "predicted": "pitted_surface",
+      "scores": {
+        "crazing": 8.72377713676542e-05,
+        "inclusion": 0.038260318338871,
+        "patches": 0.0029225775506347418,
+        "pitted_surface": 0.9526165723800659,
+        "rolled_in_scale": 0.0008027463918551803,
+        "scratches": 0.00531059829518199
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/PS_75.bmp",
+      "actual": "pitted_surface",
+      "predicted": "pitted_surface",
+      "scores": {
+        "crazing": 5.265103391138837e-05,
+        "inclusion": 0.03395555540919304,
+        "patches": 0.007881095632910728,
+        "pitted_surface": 0.948046863079071,
+        "rolled_in_scale": 0.00024338650109712034,
+        "scratches": 0.009820410050451756
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/PS_78.bmp",
+      "actual": "pitted_surface",
+      "predicted": "pitted_surface",
+      "scores": {
+        "crazing": 6.201621727086604e-05,
+        "inclusion": 0.02056349627673626,
+        "patches": 0.009499164298176765,
+        "pitted_surface": 0.9569227695465088,
+        "rolled_in_scale": 0.00030594642157666385,
+        "scratches": 0.012646615505218506
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/PS_86.bmp",
+      "actual": "pitted_surface",
+      "predicted": "inclusion",
+      "scores": {
+        "crazing": 0.00012217287439852953,
+        "inclusion": 0.6489382386207581,
+        "patches": 0.0017901967512443662,
+        "pitted_surface": 0.18119223415851593,
+        "rolled_in_scale": 0.0029704435728490353,
+        "scratches": 0.16498665511608124
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/PS_90.bmp",
+      "actual": "pitted_surface",
+      "predicted": "pitted_surface",
+      "scores": {
+        "crazing": 0.00015591624833177775,
+        "inclusion": 0.2854576110839844,
+        "patches": 0.0031669752206653357,
+        "pitted_surface": 0.6369869709014893,
+        "rolled_in_scale": 0.002657963428646326,
+        "scratches": 0.07157456874847412
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/PS_91.bmp",
+      "actual": "pitted_surface",
+      "predicted": "pitted_surface",
+      "scores": {
+        "crazing": 0.0003425612230785191,
+        "inclusion": 0.09268338978290558,
+        "patches": 0.004825100302696228,
+        "pitted_surface": 0.851012647151947,
+        "rolled_in_scale": 0.004579141270369291,
+        "scratches": 0.04655712470412254
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/PS_97.bmp",
+      "actual": "pitted_surface",
+      "predicted": "pitted_surface",
+      "scores": {
+        "crazing": 0.00020658705034293234,
+        "inclusion": 0.3079582452774048,
+        "patches": 0.00051930733025074,
+        "pitted_surface": 0.6007413268089294,
+        "rolled_in_scale": 0.028344182297587395,
+        "scratches": 0.06223035231232643
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/PS_98.bmp",
+      "actual": "pitted_surface",
+      "predicted": "pitted_surface",
+      "scores": {
+        "crazing": 2.5772853405214846e-05,
+        "inclusion": 0.051889531314373016,
+        "patches": 0.00407450133934617,
+        "pitted_surface": 0.9371777772903442,
+        "rolled_in_scale": 0.00013425435463432223,
+        "scratches": 0.006698042619973421
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/RS_10.bmp",
+      "actual": "rolled_in_scale",
+      "predicted": "rolled_in_scale",
+      "scores": {
+        "crazing": 0.002512166742235422,
+        "inclusion": 0.00024015149392653257,
+        "patches": 0.001626677461899817,
+        "pitted_surface": 0.013911979272961617,
+        "rolled_in_scale": 0.9607238173484802,
+        "scratches": 0.020985141396522522
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/RS_106.bmp",
+      "actual": "rolled_in_scale",
+      "predicted": "rolled_in_scale",
+      "scores": {
+        "crazing": 0.0019741118885576725,
+        "inclusion": 0.00016725293244235218,
+        "patches": 0.0007429643883369863,
+        "pitted_surface": 0.004143967758864164,
+        "rolled_in_scale": 0.97457355260849,
+        "scratches": 0.018398074433207512
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/RS_114.bmp",
+      "actual": "rolled_in_scale",
+      "predicted": "rolled_in_scale",
+      "scores": {
+        "crazing": 0.003908214159309864,
+        "inclusion": 8.728141438041348e-06,
+        "patches": 0.0007763621397316456,
+        "pitted_surface": 0.0020995489321649075,
+        "rolled_in_scale": 0.9875620603561401,
+        "scratches": 0.005645072087645531
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/RS_118.bmp",
+      "actual": "rolled_in_scale",
+      "predicted": "rolled_in_scale",
+      "scores": {
+        "crazing": 0.002021186053752899,
+        "inclusion": 0.00011351924331393093,
+        "patches": 0.0008169325883500278,
+        "pitted_surface": 0.005085435695946217,
+        "rolled_in_scale": 0.9807161092758179,
+        "scratches": 0.011246812529861927
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/RS_124.bmp",
+      "actual": "rolled_in_scale",
+      "predicted": "rolled_in_scale",
+      "scores": {
+        "crazing": 0.002574814250692725,
+        "inclusion": 1.9538880223990418e-05,
+        "patches": 0.0005868583684787154,
+        "pitted_surface": 0.0048002200201153755,
+        "rolled_in_scale": 0.9869727492332458,
+        "scratches": 0.005045849829912186
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/RS_133.bmp",
+      "actual": "rolled_in_scale",
+      "predicted": "rolled_in_scale",
+      "scores": {
+        "crazing": 0.00450962595641613,
+        "inclusion": 1.0587584711174713e-06,
+        "patches": 0.0009532644180580974,
+        "pitted_surface": 0.0022748850751668215,
+        "rolled_in_scale": 0.9903647303581238,
+        "scratches": 0.0018963641487061977
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/RS_136.bmp",
+      "actual": "rolled_in_scale",
+      "predicted": "rolled_in_scale",
+      "scores": {
+        "crazing": 0.0033803852275013924,
+        "inclusion": 3.884046236635186e-06,
+        "patches": 0.0008427671273238957,
+        "pitted_surface": 0.00466067623347044,
+        "rolled_in_scale": 0.9879786968231201,
+        "scratches": 0.0031335644889622927
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/RS_138.bmp",
+      "actual": "rolled_in_scale",
+      "predicted": "rolled_in_scale",
+      "scores": {
+        "crazing": 0.0037165663670748472,
+        "inclusion": 3.5650616609927965e-06,
+        "patches": 0.0010657005477696657,
+        "pitted_surface": 0.0022628281731158495,
+        "rolled_in_scale": 0.9896827936172485,
+        "scratches": 0.003268543863669038
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/RS_150.bmp",
+      "actual": "rolled_in_scale",
+      "predicted": "rolled_in_scale",
+      "scores": {
+        "crazing": 0.012148122303187847,
+        "inclusion": 4.892166316494695e-07,
+        "patches": 0.0012337167281657457,
+        "pitted_surface": 0.0033037171233445406,
+        "rolled_in_scale": 0.9817624092102051,
+        "scratches": 0.0015515140257775784
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/RS_161.bmp",
+      "actual": "rolled_in_scale",
+      "predicted": "rolled_in_scale",
+      "scores": {
+        "crazing": 0.0020410658325999975,
+        "inclusion": 6.086357871026848e-07,
+        "patches": 0.00021254239254631102,
+        "pitted_surface": 0.0014172411756590009,
+        "rolled_in_scale": 0.9957844614982605,
+        "scratches": 0.0005440895911306143
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/RS_163.bmp",
+      "actual": "rolled_in_scale",
+      "predicted": "rolled_in_scale",
+      "scores": {
+        "crazing": 0.004410669673234224,
+        "inclusion": 4.4847178060081205e-07,
+        "patches": 0.0007299513672478497,
+        "pitted_surface": 0.0018660727655515075,
+        "rolled_in_scale": 0.9917640089988708,
+        "scratches": 0.0012289065634831786
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/RS_170.bmp",
+      "actual": "rolled_in_scale",
+      "predicted": "rolled_in_scale",
+      "scores": {
+        "crazing": 0.004818031098693609,
+        "inclusion": 2.0345171378721716e-06,
+        "patches": 0.0009190784185193479,
+        "pitted_surface": 0.003258852520957589,
+        "rolled_in_scale": 0.9888033270835876,
+        "scratches": 0.00219875224865973
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/RS_189.bmp",
+      "actual": "rolled_in_scale",
+      "predicted": "rolled_in_scale",
+      "scores": {
+        "crazing": 0.007492829114198685,
+        "inclusion": 1.6320842632921995e-06,
+        "patches": 0.0004444626101758331,
+        "pitted_surface": 0.0024767625145614147,
+        "rolled_in_scale": 0.9881559610366821,
+        "scratches": 0.0014283978380262852
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/RS_19.bmp",
+      "actual": "rolled_in_scale",
+      "predicted": "rolled_in_scale",
+      "scores": {
+        "crazing": 0.0030998028814792633,
+        "inclusion": 1.1486143193906173e-05,
+        "patches": 0.0011621633311733603,
+        "pitted_surface": 0.016839005053043365,
+        "rolled_in_scale": 0.9761751890182495,
+        "scratches": 0.002712304936721921
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/RS_2.bmp",
+      "actual": "rolled_in_scale",
+      "predicted": "rolled_in_scale",
+      "scores": {
+        "crazing": 0.002985198050737381,
+        "inclusion": 2.208706246165093e-05,
+        "patches": 0.0013239536201581359,
+        "pitted_surface": 0.00722520612180233,
+        "rolled_in_scale": 0.9832425117492676,
+        "scratches": 0.005201002582907677
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/RS_203.bmp",
+      "actual": "rolled_in_scale",
+      "predicted": "rolled_in_scale",
+      "scores": {
+        "crazing": 0.002463557757437229,
+        "inclusion": 1.2113820048398338e-05,
+        "patches": 0.0006438809796236455,
+        "pitted_surface": 0.0016408446244895458,
+        "rolled_in_scale": 0.990287184715271,
+        "scratches": 0.0049524204805493355
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/RS_21.bmp",
+      "actual": "rolled_in_scale",
+      "predicted": "rolled_in_scale",
+      "scores": {
+        "crazing": 0.0012730869930237532,
+        "inclusion": 1.5359382814494893e-05,
+        "patches": 0.0004494551394600421,
+        "pitted_surface": 0.006696187891066074,
+        "rolled_in_scale": 0.9874547719955444,
+        "scratches": 0.00411111768335104
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/RS_216.bmp",
+      "actual": "rolled_in_scale",
+      "predicted": "rolled_in_scale",
+      "scores": {
+        "crazing": 0.005528714973479509,
+        "inclusion": 4.5029173634247854e-06,
+        "patches": 0.001390280551277101,
+        "pitted_surface": 0.0009350830223411322,
+        "rolled_in_scale": 0.9866076707839966,
+        "scratches": 0.005533831659704447
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/RS_220.bmp",
+      "actual": "rolled_in_scale",
+      "predicted": "rolled_in_scale",
+      "scores": {
+        "crazing": 0.004055776167660952,
+        "inclusion": 3.574660513550043e-05,
+        "patches": 0.00605610990896821,
+        "pitted_surface": 0.004533290863037109,
+        "rolled_in_scale": 0.9560989737510681,
+        "scratches": 0.029220111668109894
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/RS_223.bmp",
+      "actual": "rolled_in_scale",
+      "predicted": "rolled_in_scale",
+      "scores": {
+        "crazing": 0.0038648725021630526,
+        "inclusion": 7.181719865911873e-06,
+        "patches": 0.0026597746182233095,
+        "pitted_surface": 0.0019138300558552146,
+        "rolled_in_scale": 0.9840248227119446,
+        "scratches": 0.007529555354267359
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/RS_236.bmp",
+      "actual": "rolled_in_scale",
+      "predicted": "rolled_in_scale",
+      "scores": {
+        "crazing": 0.004081753082573414,
+        "inclusion": 5.85668531130068e-05,
+        "patches": 0.00546010909602046,
+        "pitted_surface": 0.006475589703768492,
+        "rolled_in_scale": 0.9599382877349854,
+        "scratches": 0.02398574724793434
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/RS_239.bmp",
+      "actual": "rolled_in_scale",
+      "predicted": "rolled_in_scale",
+      "scores": {
+        "crazing": 0.003083455143496394,
+        "inclusion": 3.6431207263376564e-05,
+        "patches": 0.005141363944858313,
+        "pitted_surface": 0.0037558225449174643,
+        "rolled_in_scale": 0.9671118259429932,
+        "scratches": 0.02087106555700302
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/RS_240.bmp",
+      "actual": "rolled_in_scale",
+      "predicted": "rolled_in_scale",
+      "scores": {
+        "crazing": 0.0061021833680570126,
+        "inclusion": 1.2005275493720546e-05,
+        "patches": 0.01397724449634552,
+        "pitted_surface": 0.0026224146131426096,
+        "rolled_in_scale": 0.9527831673622131,
+        "scratches": 0.024503016844391823
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/RS_242.bmp",
+      "actual": "rolled_in_scale",
+      "predicted": "rolled_in_scale",
+      "scores": {
+        "crazing": 0.006128003355115652,
+        "inclusion": 7.89562091085827e-06,
+        "patches": 0.008847463876008987,
+        "pitted_surface": 0.002104816259816289,
+        "rolled_in_scale": 0.9655820727348328,
+        "scratches": 0.017329715192317963
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/RS_26.bmp",
+      "actual": "rolled_in_scale",
+      "predicted": "rolled_in_scale",
+      "scores": {
+        "crazing": 0.0017874250188469887,
+        "inclusion": 9.10523158381693e-05,
+        "patches": 0.0008790083811618388,
+        "pitted_surface": 0.00834475178271532,
+        "rolled_in_scale": 0.9752916097640991,
+        "scratches": 0.01360609382390976
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/RS_265.bmp",
+      "actual": "rolled_in_scale",
+      "predicted": "rolled_in_scale",
+      "scores": {
+        "crazing": 0.0052109332755208015,
+        "inclusion": 9.001470061775763e-06,
+        "patches": 0.0056330063380301,
+        "pitted_surface": 0.0022688796743750572,
+        "rolled_in_scale": 0.9690607786178589,
+        "scratches": 0.017817409709095955
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/RS_268.bmp",
+      "actual": "rolled_in_scale",
+      "predicted": "rolled_in_scale",
+      "scores": {
+        "crazing": 0.00541318766772747,
+        "inclusion": 8.543263902538456e-06,
+        "patches": 0.008676216937601566,
+        "pitted_surface": 0.002586302813142538,
+        "rolled_in_scale": 0.9647631645202637,
+        "scratches": 0.01855265349149704
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/RS_269.bmp",
+      "actual": "rolled_in_scale",
+      "predicted": "rolled_in_scale",
+      "scores": {
+        "crazing": 0.002433530054986477,
+        "inclusion": 1.941024856932927e-05,
+        "patches": 0.0006546266376972198,
+        "pitted_surface": 0.0033843331038951874,
+        "rolled_in_scale": 0.9861965775489807,
+        "scratches": 0.007311480585485697
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/RS_270.bmp",
+      "actual": "rolled_in_scale",
+      "predicted": "rolled_in_scale",
+      "scores": {
+        "crazing": 0.0028230478055775166,
+        "inclusion": 2.4872688300092705e-05,
+        "patches": 0.002194898435845971,
+        "pitted_surface": 0.0026614826638251543,
+        "rolled_in_scale": 0.9818894863128662,
+        "scratches": 0.010406197980046272
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/RS_277.bmp",
+      "actual": "rolled_in_scale",
+      "predicted": "rolled_in_scale",
+      "scores": {
+        "crazing": 0.0019512178841978312,
+        "inclusion": 4.023143628728576e-05,
+        "patches": 0.0004947477718815207,
+        "pitted_surface": 0.004315135534852743,
+        "rolled_in_scale": 0.9873314499855042,
+        "scratches": 0.005867173429578543
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/RS_279.bmp",
+      "actual": "rolled_in_scale",
+      "predicted": "rolled_in_scale",
+      "scores": {
+        "crazing": 0.003574766218662262,
+        "inclusion": 1.946857628354337e-05,
+        "patches": 0.001956400228664279,
+        "pitted_surface": 0.0036561174783855677,
+        "rolled_in_scale": 0.9803304076194763,
+        "scratches": 0.010462931357324123
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/RS_281.bmp",
+      "actual": "rolled_in_scale",
+      "predicted": "rolled_in_scale",
+      "scores": {
+        "crazing": 0.002628043992444873,
+        "inclusion": 1.6848014638526365e-05,
+        "patches": 0.0008234314736910164,
+        "pitted_surface": 0.0030018615070730448,
+        "rolled_in_scale": 0.9874320030212402,
+        "scratches": 0.006097787991166115
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/RS_283.bmp",
+      "actual": "rolled_in_scale",
+      "predicted": "rolled_in_scale",
+      "scores": {
+        "crazing": 0.009704762138426304,
+        "inclusion": 4.407920187077252e-06,
+        "patches": 0.0023084909189492464,
+        "pitted_surface": 0.0023966978769749403,
+        "rolled_in_scale": 0.9780290722846985,
+        "scratches": 0.007556548807770014
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/RS_295.bmp",
+      "actual": "rolled_in_scale",
+      "predicted": "rolled_in_scale",
+      "scores": {
+        "crazing": 0.005405202507972717,
+        "inclusion": 2.1172638753341744e-06,
+        "patches": 0.0011607344495132565,
+        "pitted_surface": 0.0009061991004273295,
+        "rolled_in_scale": 0.9894104599952698,
+        "scratches": 0.003115221858024597
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/RS_32.bmp",
+      "actual": "rolled_in_scale",
+      "predicted": "rolled_in_scale",
+      "scores": {
+        "crazing": 0.001590728759765625,
+        "inclusion": 0.0001836834999267012,
+        "patches": 0.0010137404315173626,
+        "pitted_surface": 0.008706538006663322,
+        "rolled_in_scale": 0.9754483699798584,
+        "scratches": 0.0130569813773036
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/RS_49.bmp",
+      "actual": "rolled_in_scale",
+      "predicted": "rolled_in_scale",
+      "scores": {
+        "crazing": 0.0030916344840079546,
+        "inclusion": 5.871287157788174e-06,
+        "patches": 0.0005700972978956997,
+        "pitted_surface": 0.003187263384461403,
+        "rolled_in_scale": 0.9900016784667969,
+        "scratches": 0.0031433680560439825
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/RS_56.bmp",
+      "actual": "rolled_in_scale",
+      "predicted": "rolled_in_scale",
+      "scores": {
+        "crazing": 0.0015186044620350003,
+        "inclusion": 0.0001380318426527083,
+        "patches": 0.0008199525764212012,
+        "pitted_surface": 0.017987877130508423,
+        "rolled_in_scale": 0.9730128049850464,
+        "scratches": 0.006522712297737598
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/RS_61.bmp",
+      "actual": "rolled_in_scale",
+      "predicted": "rolled_in_scale",
+      "scores": {
+        "crazing": 0.002035953337326646,
+        "inclusion": 0.00012692221207544208,
+        "patches": 0.0015953254187479615,
+        "pitted_surface": 0.014472948387265205,
+        "rolled_in_scale": 0.9686031341552734,
+        "scratches": 0.013165734708309174
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/RS_70.bmp",
+      "actual": "rolled_in_scale",
+      "predicted": "rolled_in_scale",
+      "scores": {
+        "crazing": 0.0021957482676953077,
+        "inclusion": 7.149335942813195e-06,
+        "patches": 0.00045165055780671537,
+        "pitted_surface": 0.0027680909261107445,
+        "rolled_in_scale": 0.9910383224487305,
+        "scratches": 0.0035389892291277647
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/RS_74.bmp",
+      "actual": "rolled_in_scale",
+      "predicted": "rolled_in_scale",
+      "scores": {
+        "crazing": 0.0042119696736335754,
+        "inclusion": 8.336089194926899e-06,
+        "patches": 0.0012330733006820083,
+        "pitted_surface": 0.01206907257437706,
+        "rolled_in_scale": 0.9793436527252197,
+        "scratches": 0.00313398614525795
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/RS_81.bmp",
+      "actual": "rolled_in_scale",
+      "predicted": "rolled_in_scale",
+      "scores": {
+        "crazing": 0.03894595429301262,
+        "inclusion": 1.1847433825096232e-06,
+        "patches": 0.006869729142636061,
+        "pitted_surface": 0.00839995127171278,
+        "rolled_in_scale": 0.9406343102455139,
+        "scratches": 0.005148900207132101
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/RS_83.bmp",
+      "actual": "rolled_in_scale",
+      "predicted": "rolled_in_scale",
+      "scores": {
+        "crazing": 0.01978594996035099,
+        "inclusion": 1.3685348676517606e-06,
+        "patches": 0.005737087689340115,
+        "pitted_surface": 0.008993386290967464,
+        "rolled_in_scale": 0.9617265462875366,
+        "scratches": 0.0037556160241365433
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/RS_89.bmp",
+      "actual": "rolled_in_scale",
+      "predicted": "rolled_in_scale",
+      "scores": {
+        "crazing": 0.0026054386980831623,
+        "inclusion": 3.920519520761445e-05,
+        "patches": 0.0007736780098639429,
+        "pitted_surface": 0.004871433600783348,
+        "rolled_in_scale": 0.9827971458435059,
+        "scratches": 0.008913098834455013
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/RS_90.bmp",
+      "actual": "rolled_in_scale",
+      "predicted": "rolled_in_scale",
+      "scores": {
+        "crazing": 0.0024010816123336554,
+        "inclusion": 0.00040915838326327503,
+        "patches": 0.0012273855973035097,
+        "pitted_surface": 0.01016853004693985,
+        "rolled_in_scale": 0.9700188040733337,
+        "scratches": 0.015775026753544807
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/RS_91.bmp",
+      "actual": "rolled_in_scale",
+      "predicted": "rolled_in_scale",
+      "scores": {
+        "crazing": 0.0018342110561206937,
+        "inclusion": 3.426851617405191e-05,
+        "patches": 0.0005237390869297087,
+        "pitted_surface": 0.0077826050110161304,
+        "rolled_in_scale": 0.9855794906616211,
+        "scratches": 0.004245692864060402
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Sc_105.bmp",
+      "actual": "scratches",
+      "predicted": "scratches",
+      "scores": {
+        "crazing": 0.0011567234760150313,
+        "inclusion": 0.025194484740495682,
+        "patches": 0.0057165008038282394,
+        "pitted_surface": 0.041681401431560516,
+        "rolled_in_scale": 0.10704486072063446,
+        "scratches": 0.8192059993743896
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Sc_11.bmp",
+      "actual": "scratches",
+      "predicted": "scratches",
+      "scores": {
+        "crazing": 0.00019435906142462045,
+        "inclusion": 8.200919546652585e-05,
+        "patches": 0.020123206079006195,
+        "pitted_surface": 0.0004284559399820864,
+        "rolled_in_scale": 5.0217582611367106e-05,
+        "scratches": 0.979121744632721
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Sc_115.bmp",
+      "actual": "scratches",
+      "predicted": "scratches",
+      "scores": {
+        "crazing": 1.219047226186376e-05,
+        "inclusion": 1.4950828699511476e-05,
+        "patches": 0.021940121427178383,
+        "pitted_surface": 2.1031994037912227e-05,
+        "rolled_in_scale": 2.468335196681437e-06,
+        "scratches": 0.9780092239379883
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Sc_121.bmp",
+      "actual": "scratches",
+      "predicted": "scratches",
+      "scores": {
+        "crazing": 0.00010757816926343367,
+        "inclusion": 0.0031100334599614143,
+        "patches": 0.006400786805897951,
+        "pitted_surface": 0.019077854230999947,
+        "rolled_in_scale": 0.000377409509383142,
+        "scratches": 0.9709262847900391
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Sc_129.bmp",
+      "actual": "scratches",
+      "predicted": "scratches",
+      "scores": {
+        "crazing": 7.613177876919508e-05,
+        "inclusion": 0.007660215720534325,
+        "patches": 0.0032844487577676773,
+        "pitted_surface": 0.005845995619893074,
+        "rolled_in_scale": 0.0015047371853142977,
+        "scratches": 0.9816284775733948
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Sc_132.bmp",
+      "actual": "scratches",
+      "predicted": "scratches",
+      "scores": {
+        "crazing": 0.00014484187704510987,
+        "inclusion": 0.019750365987420082,
+        "patches": 0.011857154779136181,
+        "pitted_surface": 0.0305781289935112,
+        "rolled_in_scale": 0.004895033780485392,
+        "scratches": 0.9327744841575623
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Sc_135.bmp",
+      "actual": "scratches",
+      "predicted": "scratches",
+      "scores": {
+        "crazing": 4.032417928101495e-05,
+        "inclusion": 0.03222203627228737,
+        "patches": 0.002758577698841691,
+        "pitted_surface": 0.013657024130225182,
+        "rolled_in_scale": 0.00018478409037925303,
+        "scratches": 0.9511372447013855
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Sc_136.bmp",
+      "actual": "scratches",
+      "predicted": "scratches",
+      "scores": {
+        "crazing": 4.3470688979141414e-05,
+        "inclusion": 0.013395177200436592,
+        "patches": 0.0073617990128695965,
+        "pitted_surface": 0.002648368012160063,
+        "rolled_in_scale": 0.00024705709074623883,
+        "scratches": 0.9763041138648987
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Sc_139.bmp",
+      "actual": "scratches",
+      "predicted": "scratches",
+      "scores": {
+        "crazing": 4.1393828723812476e-05,
+        "inclusion": 0.014487307518720627,
+        "patches": 0.009768269956111908,
+        "pitted_surface": 0.01672973483800888,
+        "rolled_in_scale": 0.00011980237468378618,
+        "scratches": 0.9588534235954285
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Sc_147.bmp",
+      "actual": "scratches",
+      "predicted": "scratches",
+      "scores": {
+        "crazing": 3.483226464595646e-05,
+        "inclusion": 0.0036959003191441298,
+        "patches": 0.0031670783646404743,
+        "pitted_surface": 0.0007626615697517991,
+        "rolled_in_scale": 0.000229053694056347,
+        "scratches": 0.992110550403595
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Sc_149.bmp",
+      "actual": "scratches",
+      "predicted": "scratches",
+      "scores": {
+        "crazing": 5.0499049393692985e-05,
+        "inclusion": 0.06193409115076065,
+        "patches": 0.002630599308758974,
+        "pitted_surface": 0.010393829084932804,
+        "rolled_in_scale": 0.0021002490539103746,
+        "scratches": 0.9228907227516174
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Sc_150.bmp",
+      "actual": "scratches",
+      "predicted": "scratches",
+      "scores": {
+        "crazing": 0.00013008991663809866,
+        "inclusion": 0.022985849529504776,
+        "patches": 0.009868652559816837,
+        "pitted_surface": 0.04286763817071915,
+        "rolled_in_scale": 0.0035596860107034445,
+        "scratches": 0.9205880165100098
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Sc_160.bmp",
+      "actual": "scratches",
+      "predicted": "scratches",
+      "scores": {
+        "crazing": 5.423114271252416e-05,
+        "inclusion": 3.3322598369522893e-07,
+        "patches": 0.05448326840996742,
+        "pitted_surface": 6.587198981833353e-07,
+        "rolled_in_scale": 2.7731093723559752e-05,
+        "scratches": 0.9454337954521179
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Sc_162.bmp",
+      "actual": "scratches",
+      "predicted": "scratches",
+      "scores": {
+        "crazing": 1.88119120139163e-05,
+        "inclusion": 6.7818244353645696e-09,
+        "patches": 0.08045537769794464,
+        "pitted_surface": 4.656963170646122e-08,
+        "rolled_in_scale": 3.569511136447545e-06,
+        "scratches": 0.919522225856781
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Sc_169.bmp",
+      "actual": "scratches",
+      "predicted": "scratches",
+      "scores": {
+        "crazing": 0.00012195364251965657,
+        "inclusion": 0.0029500906821340322,
+        "patches": 0.037638142704963684,
+        "pitted_surface": 0.02974070981144905,
+        "rolled_in_scale": 0.0014790057903155684,
+        "scratches": 0.928070068359375
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Sc_172.bmp",
+      "actual": "scratches",
+      "predicted": "scratches",
+      "scores": {
+        "crazing": 6.574211147380993e-05,
+        "inclusion": 0.0004737167037092149,
+        "patches": 0.0283457413315773,
+        "pitted_surface": 0.0022920130286365747,
+        "rolled_in_scale": 0.0001038501868606545,
+        "scratches": 0.968718945980072
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Sc_173.bmp",
+      "actual": "scratches",
+      "predicted": "scratches",
+      "scores": {
+        "crazing": 0.0002200062299380079,
+        "inclusion": 0.0014914695639163256,
+        "patches": 0.1289728879928589,
+        "pitted_surface": 0.02249581180512905,
+        "rolled_in_scale": 0.0014094539219513535,
+        "scratches": 0.8454103469848633
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Sc_174.bmp",
+      "actual": "scratches",
+      "predicted": "scratches",
+      "scores": {
+        "crazing": 4.7279820137191564e-05,
+        "inclusion": 5.107630568090826e-05,
+        "patches": 0.00690282229334116,
+        "pitted_surface": 0.00011005044507328421,
+        "rolled_in_scale": 6.328772724373266e-05,
+        "scratches": 0.9928255081176758
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Sc_177.bmp",
+      "actual": "scratches",
+      "predicted": "scratches",
+      "scores": {
+        "crazing": 3.315113644930534e-05,
+        "inclusion": 0.0001080898437066935,
+        "patches": 0.012180634774267673,
+        "pitted_surface": 6.069382652640343e-05,
+        "rolled_in_scale": 0.00022066356905270368,
+        "scratches": 0.987396776676178
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Sc_206.bmp",
+      "actual": "scratches",
+      "predicted": "scratches",
+      "scores": {
+        "crazing": 5.574744500336237e-05,
+        "inclusion": 1.7729777027852833e-05,
+        "patches": 0.016582457348704338,
+        "pitted_surface": 4.862466448685154e-05,
+        "rolled_in_scale": 0.00037816239637322724,
+        "scratches": 0.9829172492027283
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Sc_208.bmp",
+      "actual": "scratches",
+      "predicted": "scratches",
+      "scores": {
+        "crazing": 8.379261271329597e-05,
+        "inclusion": 0.04033553972840309,
+        "patches": 0.0018464834429323673,
+        "pitted_surface": 0.007509761024266481,
+        "rolled_in_scale": 0.006016578059643507,
+        "scratches": 0.9442078471183777
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Sc_210.bmp",
+      "actual": "scratches",
+      "predicted": "scratches",
+      "scores": {
+        "crazing": 0.00019678729586303234,
+        "inclusion": 0.00013967436098027974,
+        "patches": 0.011551005765795708,
+        "pitted_surface": 0.0002737655595410615,
+        "rolled_in_scale": 0.0006939329905435443,
+        "scratches": 0.9871448874473572
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Sc_213.bmp",
+      "actual": "scratches",
+      "predicted": "scratches",
+      "scores": {
+        "crazing": 0.00010202875273535028,
+        "inclusion": 7.082496267685201e-06,
+        "patches": 0.032651256769895554,
+        "pitted_surface": 2.2829002773505636e-05,
+        "rolled_in_scale": 0.00029968793387524784,
+        "scratches": 0.966917097568512
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Sc_216.bmp",
+      "actual": "scratches",
+      "predicted": "scratches",
+      "scores": {
+        "crazing": 1.8520162484492175e-05,
+        "inclusion": 2.5603380748862037e-08,
+        "patches": 0.02013383060693741,
+        "pitted_surface": 1.2409196870066808e-07,
+        "rolled_in_scale": 8.334498602380336e-07,
+        "scratches": 0.9798465967178345
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Sc_22.bmp",
+      "actual": "scratches",
+      "predicted": "scratches",
+      "scores": {
+        "crazing": 2.658984340087045e-05,
+        "inclusion": 0.09930736571550369,
+        "patches": 0.0005430487217381597,
+        "pitted_surface": 0.029869306832551956,
+        "rolled_in_scale": 0.000969956221524626,
+        "scratches": 0.8692837357521057
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Sc_229.bmp",
+      "actual": "scratches",
+      "predicted": "scratches",
+      "scores": {
+        "crazing": 0.0001777939178282395,
+        "inclusion": 0.004857316147536039,
+        "patches": 0.049576930701732635,
+        "pitted_surface": 0.03548816964030266,
+        "rolled_in_scale": 0.0037178813945502043,
+        "scratches": 0.9061819911003113
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Sc_235.bmp",
+      "actual": "scratches",
+      "predicted": "scratches",
+      "scores": {
+        "crazing": 0.00020072179904673249,
+        "inclusion": 0.09437555074691772,
+        "patches": 0.002659166231751442,
+        "pitted_surface": 0.061185892671346664,
+        "rolled_in_scale": 0.02394157648086548,
+        "scratches": 0.8176370859146118
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Sc_245.bmp",
+      "actual": "scratches",
+      "predicted": "scratches",
+      "scores": {
+        "crazing": 0.0001473020965931937,
+        "inclusion": 0.02862893044948578,
+        "patches": 0.007211119867861271,
+        "pitted_surface": 0.02573854848742485,
+        "rolled_in_scale": 0.01004384271800518,
+        "scratches": 0.9282302260398865
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Sc_267.bmp",
+      "actual": "scratches",
+      "predicted": "scratches",
+      "scores": {
+        "crazing": 0.00022946640092413872,
+        "inclusion": 0.02672150358557701,
+        "patches": 0.001854616217315197,
+        "pitted_surface": 0.043546028435230255,
+        "rolled_in_scale": 0.025572678074240685,
+        "scratches": 0.9020757675170898
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Sc_269.bmp",
+      "actual": "scratches",
+      "predicted": "scratches",
+      "scores": {
+        "crazing": 0.00027099830913357437,
+        "inclusion": 0.00016441081243101507,
+        "patches": 0.0031053314451128244,
+        "pitted_surface": 0.00046920820022933185,
+        "rolled_in_scale": 0.0026149898767471313,
+        "scratches": 0.9933750033378601
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Sc_270.bmp",
+      "actual": "scratches",
+      "predicted": "scratches",
+      "scores": {
+        "crazing": 0.0002637089928612113,
+        "inclusion": 0.0005525588057935238,
+        "patches": 0.0033724778331816196,
+        "pitted_surface": 0.0020750451367348433,
+        "rolled_in_scale": 0.008203530684113503,
+        "scratches": 0.9855327010154724
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Sc_272.bmp",
+      "actual": "scratches",
+      "predicted": "scratches",
+      "scores": {
+        "crazing": 0.0001373811683151871,
+        "inclusion": 0.0009711020393297076,
+        "patches": 0.0020713522098958492,
+        "pitted_surface": 0.0010529567953199148,
+        "rolled_in_scale": 0.0034599597565829754,
+        "scratches": 0.9923072457313538
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Sc_297.bmp",
+      "actual": "scratches",
+      "predicted": "inclusion",
+      "scores": {
+        "crazing": 3.980004112236202e-05,
+        "inclusion": 0.5170829892158508,
+        "patches": 0.0005739317275583744,
+        "pitted_surface": 0.026461748406291008,
+        "rolled_in_scale": 0.0015658304328098893,
+        "scratches": 0.4542757570743561
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Sc_299.bmp",
+      "actual": "scratches",
+      "predicted": "scratches",
+      "scores": {
+        "crazing": 0.00027256901375949383,
+        "inclusion": 0.0024205376394093037,
+        "patches": 0.0063531529158353806,
+        "pitted_surface": 0.014572062529623508,
+        "rolled_in_scale": 0.011998271569609642,
+        "scratches": 0.9643834233283997
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Sc_32.bmp",
+      "actual": "scratches",
+      "predicted": "scratches",
+      "scores": {
+        "crazing": 3.174723678966984e-05,
+        "inclusion": 0.3387563228607178,
+        "patches": 0.000548622861970216,
+        "pitted_surface": 0.03309856727719307,
+        "rolled_in_scale": 0.0012779346434399486,
+        "scratches": 0.6262868642807007
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Sc_35.bmp",
+      "actual": "scratches",
+      "predicted": "scratches",
+      "scores": {
+        "crazing": 5.766122922068462e-05,
+        "inclusion": 0.4271194338798523,
+        "patches": 0.0014580265851691365,
+        "pitted_surface": 0.03185621649026871,
+        "rolled_in_scale": 0.001749425078742206,
+        "scratches": 0.5377591848373413
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Sc_40.bmp",
+      "actual": "scratches",
+      "predicted": "scratches",
+      "scores": {
+        "crazing": 0.00032601592829450965,
+        "inclusion": 0.16518881916999817,
+        "patches": 0.009131265804171562,
+        "pitted_surface": 0.06954025477170944,
+        "rolled_in_scale": 0.0028963666409254074,
+        "scratches": 0.7529172301292419
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Sc_45.bmp",
+      "actual": "scratches",
+      "predicted": "scratches",
+      "scores": {
+        "crazing": 0.00024375232169404626,
+        "inclusion": 0.04475193843245506,
+        "patches": 0.00652775913476944,
+        "pitted_surface": 0.009976866655051708,
+        "rolled_in_scale": 0.0016498103505000472,
+        "scratches": 0.93684983253479
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Sc_52.bmp",
+      "actual": "scratches",
+      "predicted": "scratches",
+      "scores": {
+        "crazing": 0.0003241647209506482,
+        "inclusion": 0.10952553153038025,
+        "patches": 0.01539839617908001,
+        "pitted_surface": 0.028664493933320045,
+        "rolled_in_scale": 0.0017726934747770429,
+        "scratches": 0.8443147540092468
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Sc_54.bmp",
+      "actual": "scratches",
+      "predicted": "scratches",
+      "scores": {
+        "crazing": 0.000405453669372946,
+        "inclusion": 0.051409002393484116,
+        "patches": 0.025576291605830193,
+        "pitted_surface": 0.021174129098653793,
+        "rolled_in_scale": 0.002039485378190875,
+        "scratches": 0.8993955850601196
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Sc_57.bmp",
+      "actual": "scratches",
+      "predicted": "inclusion",
+      "scores": {
+        "crazing": 4.928979979013093e-05,
+        "inclusion": 0.5459433794021606,
+        "patches": 0.0007442052010446787,
+        "pitted_surface": 0.025087811052799225,
+        "rolled_in_scale": 0.0025391229428350925,
+        "scratches": 0.4256362020969391
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Sc_73.bmp",
+      "actual": "scratches",
+      "predicted": "inclusion",
+      "scores": {
+        "crazing": 5.835484262206592e-05,
+        "inclusion": 0.6623970866203308,
+        "patches": 0.0005842459504492581,
+        "pitted_surface": 0.06404083967208862,
+        "rolled_in_scale": 0.0031503443606197834,
+        "scratches": 0.2697691321372986
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Sc_77.bmp",
+      "actual": "scratches",
+      "predicted": "scratches",
+      "scores": {
+        "crazing": 0.0002459331590216607,
+        "inclusion": 0.0007277150871232152,
+        "patches": 0.0035922001115977764,
+        "pitted_surface": 0.0011017187498509884,
+        "rolled_in_scale": 0.00019194856577087194,
+        "scratches": 0.9941404461860657
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Sc_94.bmp",
+      "actual": "scratches",
+      "predicted": "scratches",
+      "scores": {
+        "crazing": 0.0001559653173899278,
+        "inclusion": 0.021357694640755653,
+        "patches": 0.010011333972215652,
+        "pitted_surface": 0.025629427284002304,
+        "rolled_in_scale": 0.0016131737502291799,
+        "scratches": 0.941232442855835
+      }
+    },
+    {
+      "path": "Dataset/NEU-CLS/Sc_96.bmp",
+      "actual": "scratches",
+      "predicted": "inclusion",
+      "scores": {
+        "crazing": 1.877625436463859e-05,
+        "inclusion": 0.6399498581886292,
+        "patches": 0.0002805150579661131,
+        "pitted_surface": 0.048905905336141586,
+        "rolled_in_scale": 0.0012700058287009597,
+        "scratches": 0.3095748722553253
+      }
+    }
+  ]
+}
