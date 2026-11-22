@@ -1,0 +1,3 @@
+# Saved checkpoints verify the SHA-256 of the original manifest bytes.
+Artifacts/split_manifest.csv -text
+*.pt binary
