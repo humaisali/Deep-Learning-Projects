@@ -1,8 +1,8 @@
 # Intelligent Financial Fraud Detection
 
-A PyTorch neural network scores credit card transactions and sends high-scoring records to a review queue. In a chronological replay of 42,724 transactions, the ANN flagged 39 records. Of those, 36 were fraudulent. It missed 16 of the 52 frauds.
+I built a PyTorch model to decide which credit card payments should enter a review queue. In a chronological replay of 42,724 transactions, the ANN flagged 39 records. Of those, 36 were fraudulent. It missed 16 of the 52 frauds.
 
-**Start here.** The executed notebook brings the full project together in one place. [Open the end-to-end project in Colab](https://colab.research.google.com/drive/1GVloJsvxmMidoMeV4lnasJ3IX8BxY_b4)
+I recorded the experiments, decisions and remaining work in the [session journal](PROJECT_JOURNAL.md). The full workflow runs in one notebook. [Open the end-to-end project in Colab](https://colab.research.google.com/drive/1GVloJsvxmMidoMeV4lnasJ3IX8BxY_b4)
 
 The GitHub checkout includes the notebooks and both trained checkpoints. For the original metrics and batch CSVs used by the numbered lessons, extract the bundle's `Artifacts` folder into the project directory. The end-to-end notebook can generate a fresh set of results from the ULB data. [Download the portfolio bundle](https://drive.google.com/file/d/1mo0nztEV82enUAb3Q4-rHVz9vehGNNjs/view?usp=drivesdk)
 
@@ -39,7 +39,7 @@ For local use, extract the portfolio ZIP, open a terminal in the extracted direc
 1. Use notebook 01 to check manual gradients against PyTorch autograd. [Foundations](https://drive.google.com/file/d/1XeixyReeV0ptkiL1HgV1Ox-PAaMU12FD/view)
 2. Place `creditcard.csv` in the project's `Dataset` folder. Run notebook 02 to train and compare models. The checkpoint and metrics CSV share a run ID under `Artifacts`. [Training and evaluation](https://drive.google.com/file/d/1ffQqutPNTgUL_O6JZUIuRiCPQPHSdb2h/view)
 3. Explore how thresholds change the review workload on the validation window. [Risk dashboard](https://colab.research.google.com/drive/1SBPup2TTkb8Ux29EBl6bxJzQC5Z2e-BJ)
-4. Run notebook 04 with its defaults to reproduce the held-out review queue. Choose **Custom CSV** for an unlabeled batch with the same 30 inputs. Each run saves all scored records and a ranked alert queue under `Artifacts/Batch runs`. The `source_record` column refers to the original one-based CSV data row. [Batch scoring](https://colab.research.google.com/drive/1eS30UQF9TXxXnARRPxYdCRtq8UG8G5PS)
+4. Select **Held-out replay** in notebook 04 to reproduce the held-out review queue. Choose **Custom CSV** for an unlabeled batch with the same 30 inputs. Each run saves all scored records and a ranked alert queue under `Artifacts/Batch runs`. The `source_record` column refers to the original one-based CSV data row. [Batch scoring](https://colab.research.google.com/drive/1eS30UQF9TXxXnARRPxYdCRtq8UG8G5PS)
 
 5. Inspect the 16 missed frauds and compare case recall with amount-weighted recall. [Error analysis](https://colab.research.google.com/drive/13Jq3UQmuWByAOEIYCD9Lnj29R1blhY7C)
 6. Compare two queue policies under the same review budget. [Fixed-budget experiment](https://colab.research.google.com/drive/1QqPvniTVj5eCGsy5qvfDi2lodKHQJ7AQ)
@@ -58,7 +58,7 @@ At the saved ANN cutoff of approximately 0.9998766, validation produced 42 alert
 
 ## Reproduction check
 
-The bundle includes the original checkpoint and the outputs of a second, full CPU training run (`20261121T184214Z_272d93dd`). The fresh ANN reached the same operating counts of 36 true alerts, three false alerts and 16 missed frauds. Its threshold was 0.9993172884 and its trapezoidal PR-AUC was 0.7631. The reference run used 0.9998766184 and reached 0.7733. The README results table uses the reference run. Each model has its corresponding threshold and scaling parameters in its own checkpoint.
+The bundle includes the original checkpoint and the outputs of a second, full CPU training run (`20261121T184214Z_272d93dd`). The fresh ANN reached the same operating counts of 36 true alerts, three false alerts and 16 missed frauds. Its threshold was 0.9993172884 and its trapezoidal PR-AUC was 0.7631. The reference run used 0.9998766184 and reached 0.7733. The README results table uses the reference run. Each ANN checkpoint stores its own threshold and scaling parameters. The latest saved Colab execution selected epoch 6 and caught 34 frauds in 35 alerts (PR-AUC 0.7508). The journal documents all three runs.
 
 ## Scope
 
