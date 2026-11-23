@@ -1,0 +1,88 @@
+{
+  "seed": 42,
+  "manifest_sha256": "86555fa81dd85aebd59d725ab89148a8a7596430889094e4566f917fe6f451fc",
+  "official_counts": {
+    "train": 75750,
+    "test": 25250
+  },
+  "split_counts": {
+    "train": 65624,
+    "test": 25250,
+    "validation": 10100,
+    "excluded": 26
+  },
+  "class_count": 101,
+  "exact_duplicate_groups": 58,
+  "photos_in_duplicate_groups": 118,
+  "conflicting_label_groups": 2,
+  "excluded_by_reason": {
+    "matches_official_test": 22,
+    "conflicting_labels": 4
+  },
+  "source_modes": {
+    "RGB": 100997,
+    "L": 3
+  },
+  "minimum_class_train_count": 647,
+  "maximum_class_train_count": 650,
+  "timing_protocol": {
+    "model": "randomly initialized ResNet-18, 101 classes",
+    "device": "cpu",
+    "processor": "Intel64 Family 6 Model 142 Stepping 10, GenuineIntel",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "torch": "2.13.0+cpu",
+    "torchvision": "0.28.0+cpu",
+    "torch_threads": 4,
+    "loader_workers": 0,
+    "batch_size": 8,
+    "warmup_batches": 3,
+    "timed_batches": 12,
+    "optimizer": "SGD, lr=0.01, momentum=0.9",
+    "timed_path": "read JPEG through optimizer step; files may be cached"
+  },
+  "timings": [
+    {
+      "crop": 224,
+      "images_per_second": 6.748936768286528,
+      "median_step_s": 1.1406966499998816,
+      "step_seconds": [
+        1.1918824999993376,
+        1.1538426000006439,
+        1.0916555999974662,
+        1.2140437999987626,
+        1.1275506999991194,
+        1.042379799997434,
+        1.0994503000001714,
+        1.111962200000562,
+        1.1991908000018157,
+        1.0518360999994911,
+        1.6688221999975212,
+        1.271846200001164
+      ],
+      "full_epoch_minutes": 162.06009492825916,
+      "pilot_epoch_minutes": 6.235550098955479
+    },
+    {
+      "crop": 160,
+      "images_per_second": 12.026987507589633,
+      "median_step_s": 0.6779783500005578,
+      "step_seconds": [
+        0.7234055000008084,
+        0.7610734000008961,
+        0.7709542000011425,
+        0.6698144000001776,
+        0.7261876000011398,
+        0.7565270000013697,
+        0.6737842000002274,
+        0.6821725000008882,
+        0.5916166000024532,
+        0.5276879000011832,
+        0.5168836999982886,
+        0.5819417000020621
+      ],
+      "full_epoch_minutes": 90.9399242863712,
+      "pilot_epoch_minutes": 3.4990751679734133
+    }
+  ],
+  "proposed_pilot_images_per_class": 25
+}
