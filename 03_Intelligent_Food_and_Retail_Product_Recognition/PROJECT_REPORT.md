@@ -51,3 +51,22 @@ I trained the 51,813 parameters of a new classifier and kept the ImageNet backbo
 The selected model reached 51.81% Top-1, 77.98% Top-5 and 0.5146 macro F1. The scratch model led by 2.54 percentage points in Top-1. The frozen model called 3 Greek salads caprese salad, down from 27. Its largest error went in a different direction. In total, 44 of 100 hamburgers were called pulled pork sandwiches. These runs change both the initial weights and which layers can learn, so the difference cannot be attributed to initialization alone.
 
 The T4 spent 54.74 minutes in training and 8.99 minutes in validation. Together that was only about one minute faster than Session 02. Every augmented crop still needed decoding and a full forward pass. The log separates training from validation but does not isolate CPU data loading from GPU computation. The next planned experiment is partial fine-tuning. [Session 03 report](Artifacts/session03_resnet18_frozen/validation.json) · [Learning curves](Artifacts/session03_resnet18_frozen/learning_curves.png)
+
+## Session 04 · Does adapting the last residual stage help?
+
+I started both runs from the Session 03 epoch-7 checkpoint. Each saw the same shuffled crops across three additional epochs on a Tesla T4. In the control, only the 51,813 classifier parameters could learn. In the second run, I also trained the last two residual blocks, bringing the total to 8,445,541 trainable parameters. I gave the classifier a learning rate of 0.003 in both runs and the pretrained stage a smaller rate of 0.0003. Batch-normalization running statistics stayed fixed. [Executed notebook](04_Partial_Fine_Tuning.ipynb)
+
+| Validation checkpoint | Additional epoch | Top-1 | Top-5 | Macro F1 |
+|---|---:|---:|---:|---:|
+| Session 03 starting weights | 0 | 51.81% | 77.98% | 0.5146 |
+| Classifier only, highest macro F1 | 2 | 58.47% | 82.16% | 0.5829 |
+| Classifier only, final epoch | 3 | 58.44% | 82.17% | 0.5809 |
+| Final residual stage and classifier, highest macro F1 and final epoch | 3 | 63.03% | 85.63% | 0.6289 |
+
+More classifier training already improved Top-1 from 51.81% to 58.44% at epoch 3. Unfreezing the final stage added another 4.59 percentage points at that same epoch. Across all three epochs, the recorded training and validation loops took 19.77 minutes for the control and 18.36 minutes for partial fine-tuning. These timings cover one run per setting and exclude staging and final checkpoint verification. [Epoch metrics and confusion matrices](Artifacts/session04_partial_finetuning/validation.json)
+
+Comparing the selected checkpoints photo by photo, partial fine-tuning corrected 869 mistakes and introduced 408, for a net gain of 461. Hamburgers called pulled pork sandwiches fell from 44 per 100 at the start to 9 in the control and 3 with partial fine-tuning. Greek salads called caprese salad went from 3 at the start to 9 in both selected models. The overall gain came with a persistent error on that dish pair. [Per-photo predictions](Artifacts/session04_partial_finetuning/validation_predictions.csv) · [Examples of corrections and regressions](Artifacts/session04_partial_finetuning/paired_changes.png)
+
+As an export check, I rebuilt both validation confusion matrices from the 10,100 saved predictions. I also loaded both published checkpoints on CPU and compared 16 photos against the T4 predictions. The partial model matched all 16. The control matched 15. For pizza image `3314176.jpg`, the CPU model ranked pizza 0.0055 logit units above grilled cheese sandwich, which the T4 had ranked first. The table uses the recorded T4 results.
+
+Session 04 is complete. In Session 05 I plan to compare full fine-tuning with this partial model. The 25,250 official test photos remain reserved for final evaluation.

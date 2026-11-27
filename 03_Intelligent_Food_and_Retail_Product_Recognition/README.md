@@ -42,4 +42,17 @@ Freezing the backbone reduced Greek salad predictions called caprese salad from 
 | 02 | [Train from scratch](02_ResNet18_From_Scratch.ipynb) | [Scratch checkpoint](Artifacts/session02_resnet18_scratch/best.pt) | [Metrics and confusion matrix](Artifacts/session02_resnet18_scratch/validation.json) |
 | 03 | [Freeze the backbone](03_Frozen_Pretrained_ResNet18.ipynb) | [Frozen-backbone checkpoint](Artifacts/session03_resnet18_frozen/best.pt) | [Metrics and comparison](Artifacts/session03_resnet18_frozen/validation.json) |
 
-To reproduce from a fresh clone in Colab, copy this project folder into My Drive → Colab Notebooks, name it `Project 03 - Intelligent Food and Retail Product Recognition` (or edit `PROJECT` in the notebook), and open the session notebook with a GPU runtime. Keep the included `Artifacts` directory and both preparation scripts in the project. Session 03 reads the saved Session 02 validation report. Each notebook writes its own resume checkpoint to Drive. The two published `best.pt` files contain the full selected model weights, class order and configuration.
+To reproduce from a fresh clone in Colab, copy this project folder into My Drive → Colab Notebooks, name it `Project 03 - Intelligent Food and Retail Product Recognition` (or edit `PROJECT` in the notebook), and open the session notebook with a GPU runtime. Keep the included `Artifacts` directory and both preparation scripts in the project. Session 03 reads the saved Session 02 validation report. Each notebook writes its own resume checkpoint to Drive. The published `best.pt` files contain the full selected model weights, class order and configuration.
+
+## Session 04 · Partial fine-tuning
+
+Starting from the Session 03 epoch-7 checkpoint, I trained each model for three more epochs on the same 224 × 224 crops. I selected the checkpoint with the highest validation macro F1 for each model.
+
+| Trainable layers | Selected additional epoch | Top-1 | Top-5 | Macro F1 |
+|---|---:|---:|---:|---:|
+| Classifier only | 2 | 58.47% | 82.16% | 0.5829 |
+| Final residual stage and classifier | 3 | **63.03%** | **85.63%** | **0.6289** |
+
+Allowing the last stage to adapt yielded 461 more correct predictions on 10,100 validation photos. At the same third epoch, the partially fine-tuned model also led the control by 4.59 percentage points in Top-1. Full fine-tuning is the next planned comparison. [Executed notebook](04_Partial_Fine_Tuning.ipynb) · [Session report](PROJECT_REPORT.md) · [Validation results](Artifacts/session04_partial_finetuning/validation.json)
+
+To reproduce the comparison, open the Session 04 notebook in the same Colab project and run all cells on a GPU. It reads the Session 03 selected weights and validation report, then saves progress after each epoch. The selected weights for both runs are available here. [Classifier-only checkpoint](Artifacts/session04_partial_finetuning/head_only/best.pt) · [Partial fine-tuning checkpoint](Artifacts/session04_partial_finetuning/layer4_and_head/best.pt)
