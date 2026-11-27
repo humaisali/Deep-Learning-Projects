@@ -1,3 +1,4 @@
 Dataset/
 .ipynb_checkpoints/
 !Artifacts/split_manifest.csv
+!Artifacts/session04_partial_finetuning/validation_predictions.csv
